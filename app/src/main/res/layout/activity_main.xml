@@ -9,44 +9,48 @@
     tools:context="com.hoang_nguyen.courseproject.MainActivity">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="App Title"
-        android:textSize="50px"
-        android:textColor="#000"
-        android:gravity="center_horizontal"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Resume"
-        android:gravity="center"
-        android:id="@+id/resumeButton"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Open Picture Library"
-        android:gravity="center"
-        android:id="@+id/pictureLibraryButton"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Take a Picture"
-        android:id="@+id/takePictureButton"
         android:gravity="center_horizontal"
-        />
+        android:text="Puzzle Time"
+        android:textColor="#000"
+        android:textSize="50px" />
+
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/resumeButton"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Help"
-        android:id="@+id/helpButton"/>
+        android:text="Resume" />
+
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/pictureLibraryButton"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Quit"
+        android:text="Open Picture Library" />
+
+    <Button
+        android:id="@+id/takePictureButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Take a Picture" />
+
+    <Button
+        android:id="@+id/helpButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Help" />
+
+    <Button
         android:id="@+id/quitButton"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Quit" />
 
 
 </LinearLayout>
