@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ImageView mImageView;
+    Intent intent;
 
 
     @Override
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void resumeGame (View view){
 
-        
+
     }//end of resume game button
 
     public void lordPicture(View view){
@@ -32,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
     }//end of lord picture method.
 
     public void help (View view){
+        //Go to help activity to explain how to play the puzzle game.
+        Intent help = new Intent(MainActivity.this, help.class);
+        startActivity(help);
 
     }//end of help.
 

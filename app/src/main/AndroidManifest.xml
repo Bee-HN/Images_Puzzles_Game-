@@ -12,15 +12,13 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
+
                 <uses-permission android:name="android.permission.CAMERA" />
             </intent-filter>
         </activity>
-
-
-
-
+        <activity android:name=".help"></activity>
     </application>
-
 
 </manifest>
