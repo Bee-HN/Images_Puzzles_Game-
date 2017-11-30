@@ -13,15 +13,18 @@ public class MainActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ImageView mImageView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
     }//end of create.
 
     public void resumeGame (View view){
 
+        
     }//end of resume game button
 
     public void lordPicture(View view){
