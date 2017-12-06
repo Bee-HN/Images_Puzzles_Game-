@@ -18,7 +18,8 @@
                 <uses-permission android:name="android.permission.CAMERA" />
             </intent-filter>
         </activity>
-        <activity android:name=".help"></activity>
+        <activity android:name=".help" />
+        <activity android:name=".playPuzzle"></activity>
     </application>
 
 </manifest>

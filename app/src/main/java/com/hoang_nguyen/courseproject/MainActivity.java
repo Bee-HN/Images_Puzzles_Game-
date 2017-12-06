@@ -34,8 +34,10 @@ public class MainActivity extends AppCompatActivity {
     }//end of resume game button
 
     public void lordPicture(View view){
+    //Open a photo album in the device and user can see pictures.
+    //create new intent to access the photo album
 
-        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent = new Intent(Intent.ACTION_PICK);
         intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
         startActivityForResult(intent, REQUEST_TAKE_ALBUM);
 
@@ -49,17 +51,20 @@ public class MainActivity extends AppCompatActivity {
     }//end of help.
 
     public void exit (View view){
-
         System.exit(0);
     }//end of exit.
 
 
     public void takePic (View view) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
+
     }//end of takePic
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -67,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             mImageView.setImageBitmap(imageBitmap);
-        }
-    }//end of onActivityResult.
+        }//end of if statement
 
+    }//end of onActivityResult.
 
 }//end of class.
