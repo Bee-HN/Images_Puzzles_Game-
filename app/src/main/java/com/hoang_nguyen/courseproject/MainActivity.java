@@ -11,8 +11,13 @@ import android.widget.ImageView;
 public class MainActivity extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int REQUEST_TAKE_ALBUM = 2;
+    static final int REQUEST_IMAGE_CROP = 3;
+    static final int REQUEST_TAKE_PHOTO = 4;
+
     ImageView mImageView;
     Intent intent;
+
 
 
     @Override
@@ -29,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
     }//end of resume game button
 
     public void lordPicture(View view){
+
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
+        startActivityForResult(intent, REQUEST_TAKE_ALBUM);
 
     }//end of lord picture method.
 
@@ -53,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     }//end of takePic
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        
+
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
