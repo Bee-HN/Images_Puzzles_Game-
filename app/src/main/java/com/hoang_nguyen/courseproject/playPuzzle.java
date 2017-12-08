@@ -2,19 +2,23 @@ package com.hoang_nguyen.courseproject;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 public class playPuzzle extends AppCompatActivity {
 
@@ -44,10 +48,20 @@ public class playPuzzle extends AppCompatActivity {
         if (isAlbum) {
         //if user pick album, then load images.
             intent = new Intent(Intent.ACTION_PICK);
-            intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            //intent.setType("image/*");
+            //intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             //intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
-            intent.setType("image/*");
             //startActivityForResult(Intent.createChooser(intent,"Select Picture"), REQUEST_TAKE_ALBUM);
+
+            File pictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+            String pictureDirectoryPath = pictureDirectory.getPath();
+            // finally, get a URI representation
+            Uri data = Uri.parse(pictureDirectoryPath);
+
+            // set the data and type.  Get all image types.
+            intent.setDataAndType(data, "image/*");
+
+
             startActivityForResult(intent, REQUEST_TAKE_ALBUM);
         }
 
@@ -74,35 +88,20 @@ public class playPuzzle extends AppCompatActivity {
                 break;
 
             case REQUEST_TAKE_ALBUM:
-                Uri imgUri = data.getData();
-                int index = 0;
-                String [] imagePath = {MediaStore.Images.Media.DATA};
-                Cursor cursor = getContentResolver().query(imgUri, imagePath, null, null, null);
-                cursor.moveToFirst();
-                String path = cursor.getString(cursor.getColumnIndex(imagePath[0]));
 
-                BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-                Bitmap bitmap = BitmapFactory.decodeFile(path,options);
-                imageView.setImageBitmap(bitmap);
-                cursor.close();
+                Uri imageUri = data.getData();
+                InputStream inputStream;
 
+                try{
+                    inputStream = getContentResolver().openInputStream(imageUri);
 
-                //   String imagePath = getRealPathFromURI(imgUri);
-//                ExifInterface exit = null;
-//
-//                try{
-//                    exit = new ExifInterface(imagePath);
-//
-//                }catch (IOException e){
-//                    e.printStackTrace();
-//                }
-//
-//                int exitOrienation = exit.getAttributeInt(ExifInterface.TAG_APERTURE_VALUE, ExifInterface.ORIENTATION_NORMAL);
-//                int exitDegree = exifOreientationToDegrees(exitOrienation);
-//
-//                image = BitmapFactory.decodeFile(imagePath);
-//                imageView.setImageBitmap(rotate(image,exitDegree));
+                    Bitmap image = BitmapFactory.decodeStream(inputStream);
+
+                    imageView.setImageBitmap(image);
+                }catch (FileNotFoundException e){
+                    e.printStackTrace();
+                }
+
                 break;
             case REQUEST_TAKE_PHOTO:
                 break;
