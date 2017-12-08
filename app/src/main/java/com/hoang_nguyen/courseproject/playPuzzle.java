@@ -1,5 +1,6 @@
 package com.hoang_nguyen.courseproject;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -9,7 +10,10 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.IOException;
@@ -20,6 +24,9 @@ public class playPuzzle extends AppCompatActivity {
     static final int REQUEST_TAKE_ALBUM = 2;
     static final int REQUEST_IMAGE_CROP = 3;
     static final int REQUEST_TAKE_PHOTO = 4;
+
+
+    public static Button quitbtn;
 
     Intent intent;
     ImageView imageView;
@@ -129,4 +136,44 @@ public class playPuzzle extends AppCompatActivity {
         return 0;
     }
 
+    public void SavePuzzle(View view) {
+    }
+
+    public void CheckPuzzle(View view) {
+    }
+
+    public void BackToHome(View view) {
+    }
+
+    public void ResetPuzzle(View view) {
+    }
+
+    public void QuitPuzzle(View view) {
+        quitbtn = (Button)findViewById(R.id.QuitBtn);
+        quitbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {//Make be an error with final. May cause crash?
+                AlertDialog.Builder altdial = new AlertDialog.Builder(playPuzzle.this);
+                altdial.setMessage("Do you want to Save puzzle while Quitting?").setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                SavePuzzle(v);
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert = altdial.create();
+                alert.setTitle("Save while Quitting Puzzle Game");
+                alert.show();
+
+            }
+        });
+    }
 }

@@ -1,21 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hoang_nguyen.courseproject.playPuzzle">
+    tools:context="com.hoang_nguyen.courseproject.playPuzzle"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
 
     <ImageView
         android:id="@+id/setImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@mipmap/ic_launcher"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="73dp"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</android.support.constraint.ConstraintLayout>
+        tools:layout_editor_absoluteY="73dp"
+        tools:layout_editor_absoluteX="168dp" />
+
+    <Button
+        android:id="@+id/SaveBtn"
+        android:layout_width="65dp"
+        android:layout_height="50dp"
+
+        android:onClick="SavePuzzle"
+        android:text="Save"
+        tools:layout_editor_absoluteX="4dp"
+        tools:layout_editor_absoluteY="461dp" />
+
+    <Button
+        android:id="@+id/CheckBtn"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:onClick="CheckPuzzle"
+        android:text="Check"
+        tools:layout_editor_absoluteY="461dp"
+        tools:layout_editor_absoluteX="78dp" />
+
+    <Button
+        android:id="@+id/BackBtn"
+        android:layout_width="65dp"
+        android:layout_height="50dp"
+        android:onClick="BackToHome"
+        android:text="Back"
+        tools:layout_editor_absoluteY="461dp"
+        tools:layout_editor_absoluteX="160dp" />
+
+    <Button
+        android:id="@+id/ResetBtn"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:onClick="ResetPuzzle"
+        android:text="Reset"
+        tools:layout_editor_absoluteY="461dp"
+        tools:layout_editor_absoluteX="243dp" />
+
+    <Button
+        android:id="@+id/QuitBtn"
+        android:layout_width="65dp"
+        android:layout_height="50dp"
+
+        android:onClick="QuitPuzzle"
+        android:text="Quit"
+        tools:layout_editor_absoluteY="461dp"
+        tools:layout_editor_absoluteX="313dp" />
+
+</LinearLayout>
