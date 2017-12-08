@@ -94,30 +94,33 @@ public class playPuzzle extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        imageView = (ImageView) findViewById(R.id.setImage);
-
-        switch (requestCode){
-            case REQUEST_IMAGE_CAPTURE:
-                image = (Bitmap) data.getExtras().get("data");
-                imageView.setImageBitmap(image);
-                break;
-
-            case REQUEST_TAKE_ALBUM:
-
-                Uri imageUri = data.getData();
-                InputStream inputStream;
-
-                try{
-                    inputStream = getContentResolver().openInputStream(imageUri);
-
-                    Bitmap image = BitmapFactory.decodeStream(inputStream);
-
+        if(resultCode == RESULT_OK) {
+            imageView = (ImageView) findViewById(R.id.setImage);
+            switch (requestCode) {
+                case REQUEST_IMAGE_CAPTURE:
+                    image = (Bitmap) data.getExtras().get("data");
                     imageView.setImageBitmap(image);
-                }catch (FileNotFoundException e){
-                    e.printStackTrace();
-                }
-                break;
+                    break;
 
+                case REQUEST_TAKE_ALBUM:
+
+                    Uri imageUri = data.getData();
+                    InputStream inputStream;
+
+                    try {
+                        inputStream = getContentResolver().openInputStream(imageUri);
+
+                        Bitmap image = BitmapFactory.decodeStream(inputStream);
+
+                        imageView.setImageBitmap(image);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+            }
+        }else{
+            finish();
         }
 
     }//end of onActivityResult.
