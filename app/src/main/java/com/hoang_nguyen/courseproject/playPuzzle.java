@@ -16,8 +16,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import java.io.IOException;
-
 public class playPuzzle extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -77,21 +75,34 @@ public class playPuzzle extends AppCompatActivity {
 
             case REQUEST_TAKE_ALBUM:
                 Uri imgUri = data.getData();
-                String imagePath = getRealPathFromURI(imgUri);
-                ExifInterface exit = null;
+                int index = 0;
+                String [] imagePath = {MediaStore.Images.Media.DATA};
+                Cursor cursor = getContentResolver().query(imgUri, imagePath, null, null, null);
+                cursor.moveToFirst();
+                String path = cursor.getString(cursor.getColumnIndex(imagePath[0]));
 
-                try{
-                    exit = new ExifInterface(imagePath);
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+                Bitmap bitmap = BitmapFactory.decodeFile(path,options);
+                imageView.setImageBitmap(bitmap);
+                cursor.close();
 
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
 
-                int exitOrienation = exit.getAttributeInt(ExifInterface.TAG_APERTURE_VALUE, ExifInterface.ORIENTATION_NORMAL);
-                int exitDegree = exifOreientationToDegrees(exitOrienation);
-
-                image = BitmapFactory.decodeFile(imagePath);
-                imageView.setImageBitmap(rotate(image,exitDegree));
+                //   String imagePath = getRealPathFromURI(imgUri);
+//                ExifInterface exit = null;
+//
+//                try{
+//                    exit = new ExifInterface(imagePath);
+//
+//                }catch (IOException e){
+//                    e.printStackTrace();
+//                }
+//
+//                int exitOrienation = exit.getAttributeInt(ExifInterface.TAG_APERTURE_VALUE, ExifInterface.ORIENTATION_NORMAL);
+//                int exitDegree = exifOreientationToDegrees(exitOrienation);
+//
+//                image = BitmapFactory.decodeFile(imagePath);
+//                imageView.setImageBitmap(rotate(image,exitDegree));
                 break;
             case REQUEST_TAKE_PHOTO:
                 break;
@@ -111,18 +122,18 @@ public class playPuzzle extends AppCompatActivity {
         return Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);
     }
 
-    public String getRealPathFromURI(Uri contentUri){
-
-        int index = 0;
-        String [] proj = {MediaStore.Images.Media.DATA};
-        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
-
-        if(cursor.moveToFirst()){
-            index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-
-        }
-        return cursor.getString(index);
-    }
+//    public String getRealPathFromURI(Uri contentUri){
+//
+//        int index = 0;
+//        String [] proj = {MediaStore.Images.Media.DATA};
+//        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+//
+//        if(cursor.moveToFirst()){
+//            index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+//
+//        }
+//        return cursor.getString(index);
+//    }
 
     public int exifOreientationToDegrees (int exif){
 
@@ -155,17 +166,17 @@ public class playPuzzle extends AppCompatActivity {
             public void onClick(final View v) {//Make be an error with final. May cause crash?
                 AlertDialog.Builder altdial = new AlertDialog.Builder(playPuzzle.this);
                 altdial.setMessage("Do you want to Save puzzle while Quitting?").setCancelable(false)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("Save and Quit", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 SavePuzzle(v);
                                 finish();
                             }
                         })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        .setNegativeButton("Quit", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
+                                finish();
                             }
                         });
 
