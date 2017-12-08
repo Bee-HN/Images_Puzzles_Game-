@@ -1,6 +1,7 @@
 package com.hoang_nguyen.courseproject;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
@@ -18,8 +19,9 @@ public class playPuzzle extends AppCompatActivity {
 
         this.setTitle("Puzzle Time");
 
+        Bitmap bitmap = (Bitmap) intent.getParcelableExtra("image");
+        imageView.setImageBitmap(bitmap);
 
-       // imageView.setImageURI(Uri.parse(intent.getStringExtra("image")));
 
     }//end of on Create
 

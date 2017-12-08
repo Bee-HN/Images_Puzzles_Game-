@@ -1,12 +1,12 @@
 package com.hoang_nguyen.courseproject;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageView;
 
 
 
@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CROP = 3;
     static final int REQUEST_TAKE_PHOTO = 4;
 
-    ImageView mImageView = null;
     Intent intent;
     Uri photoURI, albumURI; // URI for photo and album.
 
@@ -31,15 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     }//end of create.
 
-    public void startGame(Uri image){
-        //starting the playPuzzle activity.
-        intent = new Intent(this, playPuzzle.class);
-        intent.putExtra("image", image);
-        startActivity(intent);
-    }
-    public void resumeGame (View view){
-
-    }//end of resume game button
+    public void resumeGame (View view){}//end of resume game button
 
     public void lordPicture(View view){
     //Open a photo album in the device and user can see pictures.
@@ -64,23 +55,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void takePic (View view) {
+    //take a picture fucntion.
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
         if(takePictureIntent.resolveActivity(getPackageManager()) != null){
 
-//            File photo = null;
-//            if (photo!=null){
-//
-//                photoURI = Uri.fromFile(photo);
-//                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-//                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-//            }
-     startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
 
         }//end of if statement.
-
 
     }//end of takePic
 
@@ -88,21 +71,30 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-//            Bundle extras = data.getExtras();
-//            Bitmap imageBitmap = (Bitmap) extras.get("data");
-//            mImageView.setImageBitmap(imageBitmap);
+        switch (requestCode){
 
-            /*
-                Author: Seho Lee
-                After taking the picture and call startGame subroutine function to start
-                playPuzzle class.
-             */
-            Uri image ;
-            image = data.getData();
-            startGame(image);
 
-        }//end of if statement
+            case REQUEST_IMAGE_CAPTURE:
+                //after taking picture, grab a taken photo URI
+                //then start playPuzzle class.
+
+                Bitmap photo = (Bitmap) data.getExtras().get("Data");
+                intent = new Intent(this, playPuzzle.class);
+                intent.putExtra("image", photo);
+                startActivity(intent);
+
+                break;
+
+
+            case REQUEST_TAKE_ALBUM:
+                //lord an image from the album.
+
+                break;
+            case REQUEST_TAKE_PHOTO:
+
+                break;
+
+        }
 
     }//end of onActivityResult.
 
