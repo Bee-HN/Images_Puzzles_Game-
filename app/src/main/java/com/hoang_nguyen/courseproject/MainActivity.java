@@ -42,9 +42,7 @@ public class MainActivity extends AppCompatActivity {
     public void exit (View view){
 
         quitbtn = (Button)findViewById(R.id.quitButton);
-        quitbtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+
                     AlertDialog.Builder altdial = new AlertDialog.Builder(MainActivity.this);
                     altdial.setMessage("Do you want to Quit this app?").setCancelable(false)
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -64,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
                     alert.setTitle("Quitting Puzzle Game");
                     alert.show();
 
-                }
-            });
+
+
 
 
 

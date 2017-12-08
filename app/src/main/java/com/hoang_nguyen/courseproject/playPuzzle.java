@@ -62,32 +62,7 @@ public class playPuzzle extends AppCompatActivity {
 
         }
 
-        quitbtn = (Button)findViewById(R.id.QuitBtn);
-        quitbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {//Make be an error with final. May cause crash?
-                AlertDialog.Builder altdial = new AlertDialog.Builder(playPuzzle.this);
-                altdial.setMessage("Do you want to Save puzzle while Quitting?").setCancelable(false)
-                        .setPositiveButton("Save and Quit", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                SavePuzzle(v);
-                                finish();
-                            }
-                        })
-                        .setNegativeButton("Quit", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                finish();
-                            }
-                        });
 
-                AlertDialog alert = altdial.create();
-                alert.setTitle("Save while Quitting Puzzle Game");
-                alert.show();
-
-            }
-        });
 
     }//end of on Create
 
@@ -138,6 +113,27 @@ public class playPuzzle extends AppCompatActivity {
     }
 
     public void QuitPuzzle(View view) {
+
+
+                AlertDialog.Builder altdial = new AlertDialog.Builder(playPuzzle.this);
+                altdial.setMessage("Do you want to Save puzzle while Quitting?").setCancelable(false)
+                        .setPositiveButton("Save and Quit", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                             //   SavePuzzle(view);
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("Quit", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                              System.exit(0);
+                            }
+                        });
+
+                AlertDialog alert = altdial.create();
+                alert.setTitle("Save while Quitting Puzzle Game");
+                alert.show();
 
     }
 }
