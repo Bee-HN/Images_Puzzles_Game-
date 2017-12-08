@@ -22,9 +22,6 @@ public class playPuzzle extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_TAKE_ALBUM = 2;
-    static final int REQUEST_IMAGE_CROP = 3;
-    static final int REQUEST_TAKE_PHOTO = 4;
-
 
     public static Button quitbtn;
 
@@ -53,8 +50,6 @@ public class playPuzzle extends AppCompatActivity {
 
             // set the data and type.  Get all image types.
             intent.setDataAndType(data, "image/*");
-
-
             startActivityForResult(intent, REQUEST_TAKE_ALBUM);
         }
 
@@ -66,6 +61,33 @@ public class playPuzzle extends AppCompatActivity {
             }//end of takePic
 
         }
+
+        quitbtn = (Button)findViewById(R.id.QuitBtn);
+        quitbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {//Make be an error with final. May cause crash?
+                AlertDialog.Builder altdial = new AlertDialog.Builder(playPuzzle.this);
+                altdial.setMessage("Do you want to Save puzzle while Quitting?").setCancelable(false)
+                        .setPositiveButton("Save and Quit", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                SavePuzzle(v);
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("Quit", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        });
+
+                AlertDialog alert = altdial.create();
+                alert.setTitle("Save while Quitting Puzzle Game");
+                alert.show();
+
+            }
+        });
 
     }//end of on Create
 
@@ -94,9 +116,6 @@ public class playPuzzle extends AppCompatActivity {
                 }catch (FileNotFoundException e){
                     e.printStackTrace();
                 }
-
-                break;
-            case REQUEST_TAKE_PHOTO:
                 break;
 
         }
@@ -116,31 +135,6 @@ public class playPuzzle extends AppCompatActivity {
     }
 
     public void QuitPuzzle(View view) {
-        quitbtn = (Button)findViewById(R.id.QuitBtn);
-        quitbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {//Make be an error with final. May cause crash?
-                AlertDialog.Builder altdial = new AlertDialog.Builder(playPuzzle.this);
-                altdial.setMessage("Do you want to Save puzzle while Quitting?").setCancelable(false)
-                        .setPositiveButton("Save and Quit", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                SavePuzzle(v);
-                                finish();
-                            }
-                        })
-                        .setNegativeButton("Quit", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                finish();
-                            }
-                        });
 
-                AlertDialog alert = altdial.create();
-                alert.setTitle("Save while Quitting Puzzle Game");
-                alert.show();
-
-            }
-        });
     }
 }

@@ -101,7 +101,6 @@
         android:id="@+id/QuitBtn"
         android:layout_width="71dp"
         android:layout_height="49dp"
-
         android:onClick="QuitPuzzle"
         android:text="Quit"
         android:layout_marginStart="313dp"
