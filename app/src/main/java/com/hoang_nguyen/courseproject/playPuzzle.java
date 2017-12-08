@@ -4,8 +4,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -48,11 +46,6 @@ public class playPuzzle extends AppCompatActivity {
         if (isAlbum) {
         //if user pick album, then load images.
             intent = new Intent(Intent.ACTION_PICK);
-            //intent.setType("image/*");
-            //intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            //intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
-            //startActivityForResult(Intent.createChooser(intent,"Select Picture"), REQUEST_TAKE_ALBUM);
-
             File pictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
             String pictureDirectoryPath = pictureDirectory.getPath();
             // finally, get a URI representation
@@ -106,45 +99,9 @@ public class playPuzzle extends AppCompatActivity {
             case REQUEST_TAKE_PHOTO:
                 break;
 
-
-
-
         }
 
     }//end of onActivityResult.
-
-    public Bitmap rotate(Bitmap src, float degree){
-
-        Matrix matrix = new Matrix();
-        matrix.postRotate(degree);
-
-        return Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);
-    }
-
-//    public String getRealPathFromURI(Uri contentUri){
-//
-//        int index = 0;
-//        String [] proj = {MediaStore.Images.Media.DATA};
-//        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
-//
-//        if(cursor.moveToFirst()){
-//            index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-//
-//        }
-//        return cursor.getString(index);
-//    }
-
-    public int exifOreientationToDegrees (int exif){
-
-        if(exif == ExifInterface.ORIENTATION_ROTATE_90){
-            return 90;
-        }else if(exif == ExifInterface.ORIENTATION_ROTATE_180){
-            return 180;
-        }else if (exif == ExifInterface.ORIENTATION_ROTATE_270){
-            return 270;
-        }
-        return 0;
-    }
 
     public void SavePuzzle(View view) {
     }
