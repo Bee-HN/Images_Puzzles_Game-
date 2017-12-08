@@ -16,7 +16,7 @@ public class playPuzzle extends AppCompatActivity {
 
     Intent intent;
     ImageView imageView;
-
+    Bitmap image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,15 +54,13 @@ public class playPuzzle extends AppCompatActivity {
 
         switch (requestCode){
             case REQUEST_IMAGE_CAPTURE:
-
-
-                Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-                imageView.setImageBitmap(thumbnail);
+                image = (Bitmap) data.getExtras().get("data");
+                imageView.setImageBitmap(image);
                 break;
-
 
             case REQUEST_TAKE_ALBUM:
                 //lord an image from the album.
+
                 break;
             case REQUEST_TAKE_PHOTO:
                 break;
