@@ -1,6 +1,7 @@
 package com.hoang_nguyen.courseproject;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -37,14 +38,12 @@ public class playPuzzle extends AppCompatActivity {
 
         if (isCamera) {
             //if user select taking picture, then run camera.
-           // camera();
             Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             }//end of takePic
 
         }
-
 
     }//end of on Create
 
@@ -55,15 +54,10 @@ public class playPuzzle extends AppCompatActivity {
 
         switch (requestCode){
             case REQUEST_IMAGE_CAPTURE:
-                //after taking picture, grab a taken photo URI
-                //then start playPuzzle class.
-//                Bitmap photo = (Bitmap) data.getExtras().get("Data");
-//                intent = new Intent(this, playPuzzle.class);
-//                intent.putExtra("image", photo);
-//                startActivity(intent);
 
-                imageView.setImageURI(data.getData());
 
+                Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+                imageView.setImageBitmap(thumbnail);
                 break;
 
 
