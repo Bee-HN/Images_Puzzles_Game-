@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -41,7 +42,8 @@ public class playPuzzle extends AppCompatActivity {
             intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             //intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
             intent.setType("image/*");
-            startActivityForResult(Intent.createChooser(intent,"Select Picture"), REQUEST_TAKE_ALBUM);
+            //startActivityForResult(Intent.createChooser(intent,"Select Picture"), REQUEST_TAKE_ALBUM);
+            startActivityForResult(intent, REQUEST_TAKE_ALBUM);
         }
 
         if (isCamera) {
@@ -82,14 +84,25 @@ public class playPuzzle extends AppCompatActivity {
                 int exitDegree = exifOreientationToDegrees(exitOrienation);
 
                 image = BitmapFactory.decodeFile(imagePath);
-                imageView.setImageBitmap(image);
+                imageView.setImageBitmap(rotate(image,exitDegree));
                 break;
             case REQUEST_TAKE_PHOTO:
                 break;
 
+
+
+
         }
 
     }//end of onActivityResult.
+
+    public Bitmap rotate(Bitmap src, float degree){
+
+        Matrix matrix = new Matrix();
+        matrix.postRotate(degree);
+
+        return Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);
+    }
 
     public String getRealPathFromURI(Uri contentUri){
 
