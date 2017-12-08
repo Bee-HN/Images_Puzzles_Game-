@@ -1,11 +1,17 @@
 package com.hoang_nguyen.courseproject;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.ExifInterface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+
+import java.io.IOException;
 
 public class playPuzzle extends AppCompatActivity {
 
@@ -32,8 +38,10 @@ public class playPuzzle extends AppCompatActivity {
         if (isAlbum) {
         //if user pick album, then load images.
             intent = new Intent(Intent.ACTION_PICK);
-            intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
-            startActivityForResult(intent, REQUEST_TAKE_ALBUM);
+            intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            //intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
+            intent.setType("image/*");
+            startActivityForResult(Intent.createChooser(intent,"Select Picture"), REQUEST_TAKE_ALBUM);
         }
 
         if (isCamera) {
@@ -59,8 +67,22 @@ public class playPuzzle extends AppCompatActivity {
                 break;
 
             case REQUEST_TAKE_ALBUM:
-                //lord an image from the album.
+                Uri imgUri = data.getData();
+                String imagePath = getRealPathFromURI(imgUri);
+                ExifInterface exit = null;
 
+                try{
+                    exit = new ExifInterface(imagePath);
+
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+
+                int exitOrienation = exit.getAttributeInt(ExifInterface.TAG_APERTURE_VALUE, ExifInterface.ORIENTATION_NORMAL);
+                int exitDegree = exifOreientationToDegrees(exitOrienation);
+
+                image = BitmapFactory.decodeFile(imagePath);
+                imageView.setImageBitmap(image);
                 break;
             case REQUEST_TAKE_PHOTO:
                 break;
@@ -68,5 +90,30 @@ public class playPuzzle extends AppCompatActivity {
         }
 
     }//end of onActivityResult.
+
+    public String getRealPathFromURI(Uri contentUri){
+
+        int index = 0;
+        String [] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+
+        if(cursor.moveToFirst()){
+            index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+
+        }
+        return cursor.getString(index);
+    }
+
+    public int exifOreientationToDegrees (int exif){
+
+        if(exif == ExifInterface.ORIENTATION_ROTATE_90){
+            return 90;
+        }else if(exif == ExifInterface.ORIENTATION_ROTATE_180){
+            return 180;
+        }else if (exif == ExifInterface.ORIENTATION_ROTATE_270){
+            return 270;
+        }
+        return 0;
+    }
 
 }
