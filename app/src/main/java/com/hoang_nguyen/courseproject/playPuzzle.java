@@ -30,7 +30,9 @@ public class playPuzzle extends AppCompatActivity {
 
         if (isAlbum) {
         //if user pick album, then load images.
-            album();
+            intent = new Intent(Intent.ACTION_PICK);
+            intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
+            startActivityForResult(intent, REQUEST_TAKE_ALBUM);
         }
 
         if (isCamera) {
@@ -45,26 +47,6 @@ public class playPuzzle extends AppCompatActivity {
 
 
     }//end of on Create
-
-    public void camera() {
-        //take a picture fucntion.
-
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        }//end of takePic
-
-    }
-    public void album (){
-        //Open a photo album in the device and user can see pictures.
-        //create new intent to access the photo album
-        intent = new Intent(Intent.ACTION_PICK);
-        intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
-        startActivityForResult(intent, REQUEST_TAKE_ALBUM);
-
-    }//end of lord picture method.
-
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
