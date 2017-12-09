@@ -25,6 +25,15 @@ public class MainActivity extends AppCompatActivity {
     public void resumeGame (View view){
     }//end of resume game button
 
+
+    public void takePic (View view) {
+        //take a picture fucntion.
+        isCamera = true;
+        intent = new Intent(this, playPuzzle.class);
+        intent.putExtra("checkPic", isCamera);
+        startActivity(intent);
+
+    }//end of takePic
     public void lordPicture(View view){
 
         isAlbum = true;
@@ -44,41 +53,25 @@ public class MainActivity extends AppCompatActivity {
 
         quitbtn = (Button)findViewById(R.id.quitButton);
 
-                    AlertDialog.Builder altdial = new AlertDialog.Builder(MainActivity.this);
-                    altdial.setMessage("Do you want to Quit this app?").setCancelable(false)
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    finish();
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            });
+        AlertDialog.Builder altdial = new AlertDialog.Builder(MainActivity.this);
+        altdial.setMessage("Do you want to Quit this app?").setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
 
-                    AlertDialog alert = altdial.create();
-                    alert.setTitle("Quitting Puzzle Game");
-                    alert.show();
-
-
-
-
-
+        AlertDialog alert = altdial.create();
+        alert.setTitle("Quitting Puzzle Game");
+        alert.show();
 
     }//end of exit.
-
-
-    public void takePic (View view) {
-    //take a picture fucntion.
-        isCamera = true;
-        intent = new Intent(this, playPuzzle.class);
-        intent.putExtra("checkPic", isCamera);
-        startActivity(intent);
-
-    }//end of takePic
-
 
 }//end of class.
