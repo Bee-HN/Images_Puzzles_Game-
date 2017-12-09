@@ -22,10 +22,8 @@ public class help extends AppCompatActivity {
     }
 
     public void TipsAndTricks(View view) {
-        Tips = (Button)findViewById(R.id.TipsBtn);
-        Tips.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {//Make be an error with final. May cause crash?
+
+
                 AlertDialog.Builder altdial = new AlertDialog.Builder(help.this);
                 altdial.setMessage("Some Tips and Tricks\n\n" +
                         "1. Try Solving the border").setCancelable(false)
@@ -40,15 +38,10 @@ public class help extends AppCompatActivity {
                 alert.setTitle("Tips and Tricks");
                 alert.show();
 
-            }
-        });
     }
 
     public void HowTo(View view) {
-        HowTo = (Button)findViewById(R.id.howToBtn);
-        HowTo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {//Make be an error with final. May cause crash?
+
                 AlertDialog.Builder altdial = new AlertDialog.Builder(help.this);
                 altdial.setMessage("How to play this game? Simple!\n\n" +
                         "1. Either open/take a picture or if you have played and saved game click Resume\n" +
@@ -66,15 +59,10 @@ public class help extends AppCompatActivity {
                 alert.setTitle("How to Play");
                 alert.show();
 
-            }
-        });
     }
 
     public void Authors(View view) {
-        Authors = (Button)findViewById(R.id.AuthorsBtn);
-        Authors.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {//Make be an error with final. May cause crash?
+
                 AlertDialog.Builder altdial = new AlertDialog.Builder(help.this);
                 altdial.setMessage("This Puzzle App is created by the following GMU students:\nSeho Lee\nEmmanuel Meneses\nHoang Nguyen").setCancelable(false)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -88,7 +76,6 @@ public class help extends AppCompatActivity {
                 alert.setTitle("Authors of Puzzle App");
                 alert.show();
 
-            }
-        });
+
     }
 }

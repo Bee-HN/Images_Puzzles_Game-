@@ -22,6 +22,11 @@ public class playPuzzle extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_TAKE_ALBUM = 2;
 
+
+
+
+
+    
     Intent intent;
     ImageView imageView;
     Bitmap image;
@@ -104,6 +109,26 @@ public class playPuzzle extends AppCompatActivity {
     }
 
     public void BackToHome(View view) {
+
+        AlertDialog.Builder altdial = new AlertDialog.Builder(playPuzzle.this);
+        altdial.setMessage("Do you want to Go Back To Home Screen").setCancelable(false)
+                .setPositiveButton("Save and Go Back", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //   SavePuzzle(view);
+                        finish();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        System.exit(0);
+                    }
+                });
+
+        AlertDialog alert = altdial.create();
+        alert.setTitle("Save while Quitting Puzzle Game");
+        alert.show();
     }
 
     public void ResetPuzzle(View view) {
@@ -118,7 +143,7 @@ public class playPuzzle extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                              //   SavePuzzle(view);
-                                finish();
+                                System.exit(0);
                             }
                         })
                         .setNegativeButton("Quit", new DialogInterface.OnClickListener() {
