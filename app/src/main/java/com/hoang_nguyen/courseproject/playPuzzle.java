@@ -45,7 +45,7 @@ public class playPuzzle extends AppCompatActivity {
             String pictureDirectoryPath = pictureDirectory.getPath();
             // finally, get a URI representation
             Uri data = Uri.parse(pictureDirectoryPath);
-
+            //createPuzzle(image);
             // set the data and type.  Get all image types.
             intent.setDataAndType(data, "image/*");
             startActivityForResult(intent, REQUEST_TAKE_ALBUM);
@@ -75,7 +75,7 @@ public class playPuzzle extends AppCompatActivity {
 
                     //Eric: Please don't delete this comment.
                     //    imageView.setImageBitmap(image);
-                    createPuzzle(image);//create the game.
+                //    createPuzzle(image);//create the game.
                     break;
 
                 case REQUEST_TAKE_ALBUM:
@@ -91,7 +91,7 @@ public class playPuzzle extends AppCompatActivity {
                         //Eric: Please don't delete this comment.
                         //imageView.setImageBitmap(image);
 
-                        createPuzzle(image);//create the game.
+                   //     createPuzzle(image);//create the game.
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -154,6 +154,18 @@ public class playPuzzle extends AppCompatActivity {
 
         @Override
         public void onClick(View view){
+
+            int x, y;
+
+            for(y= 0; y < 6 ; y++){
+
+                for (x = 0 ; x < 5; x ++){
+
+
+
+
+                }
+            }
 
         }
 
