@@ -10,6 +10,7 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity {
 
     Intent intent;
+
     boolean isAlbum = false;
     boolean isCamera = false;
 
