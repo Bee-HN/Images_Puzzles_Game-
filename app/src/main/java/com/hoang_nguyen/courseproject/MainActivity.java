@@ -5,15 +5,13 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
+
 
 public class MainActivity extends AppCompatActivity {
 
     Intent intent;
     boolean isAlbum = false;
     boolean isCamera = false;
-
-    public static Button quitbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void exit (View view){
 
-        quitbtn = (Button)findViewById(R.id.quitButton);
+
 
         AlertDialog.Builder altdial = new AlertDialog.Builder(MainActivity.this);
         altdial.setMessage("Do you want to Quit this app?").setCancelable(false)
