@@ -11,7 +11,6 @@ import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.File;
@@ -22,8 +21,6 @@ public class playPuzzle extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_TAKE_ALBUM = 2;
-
-    public static Button quitbtn;
 
     Intent intent;
     ImageView imageView;
