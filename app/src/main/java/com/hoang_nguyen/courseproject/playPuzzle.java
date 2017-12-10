@@ -72,7 +72,7 @@ public class playPuzzle extends AppCompatActivity {
             switch (requestCode) {
                 case REQUEST_IMAGE_CAPTURE:
                     image = (Bitmap) data.getExtras().get("data");
-
+                    createImageArrays(image);
 
 
                     //Eric: Please don't delete this comment.
@@ -87,43 +87,11 @@ public class playPuzzle extends AppCompatActivity {
 
                     try {
                         inputStream = getContentResolver().openInputStream(imageUri);
-                        ImageButton imgBtn = (ImageButton) findViewById(R.id.btn0);
+
                         Bitmap image = BitmapFactory.decodeStream(inputStream);
 
-                        ImageButton imgBtn1 = (ImageButton) findViewById(R.id.btn1);
-                        ImageButton imgBtn2 = (ImageButton) findViewById(R.id.btn2);
-                        ImageButton imgBtn3 = (ImageButton) findViewById(R.id.btn3);
-                        ImageButton imgBtn4 = (ImageButton) findViewById(R.id.btn4);
-                        ImageButton imgBtn5 = (ImageButton) findViewById(R.id.btn5);
-                        ImageButton imgBtn6 = (ImageButton) findViewById(R.id.btn6);
-                        ImageButton imgBtn7 = (ImageButton) findViewById(R.id.btn7);
-                        ImageButton imgBtn8 = (ImageButton) findViewById(R.id.btn8);
+                        createImageArrays(image);
 
-
-                        Bitmap bMapScaled = Bitmap.createScaledBitmap(image, 720, 1080, true);
-                        Bitmap temp = Bitmap.createBitmap(bMapScaled, 0,0, 180, 180);
-                        imgBtn.setImageBitmap(temp);
-
-                        temp  = Bitmap.createBitmap(bMapScaled, 180,0, 180, 180);
-                        imgBtn1.setImageBitmap(temp);
-
-                        temp  = Bitmap.createBitmap(bMapScaled, 360,0, 180, 180);
-                        imgBtn2.setImageBitmap(temp);
-
-                        temp  = Bitmap.createBitmap(bMapScaled, 540,0, 180, 180);
-                        imgBtn3.setImageBitmap(temp);
-
-                        temp  = Bitmap.createBitmap(bMapScaled, 0,180, 180, 180);
-                        imgBtn4.setImageBitmap(temp);
-
-                        temp  = Bitmap.createBitmap(bMapScaled, 180,180, 180, 180);
-                        imgBtn5.setImageBitmap(temp);
-
-                        temp  = Bitmap.createBitmap(bMapScaled, 360,180, 180, 180);
-                        imgBtn6.setImageBitmap(temp);
-
-                        temp  = Bitmap.createBitmap(bMapScaled, 540,180, 180, 180);
-                        imgBtn7.setImageBitmap(temp);
                         //Eric: Please don't delete this comment.
                         //imageView.setImageBitmap(image);
 
@@ -134,6 +102,7 @@ public class playPuzzle extends AppCompatActivity {
                     break;
 
             }
+
         }else{
             finish();
         }
@@ -179,24 +148,116 @@ public class playPuzzle extends AppCompatActivity {
 
     }//end of createPuzzle
 
-/*
-    void createImageArrays(Bitmap image)
-    {
-        Bitmap bMap = BitmapFactory.decodeResource(getResources(), image);
-        Bitmap bMapScaled = Bitmap.createScaledBitmap(bMap, 240, 240, true);
 
-        bitmapsArray[0] = Bitmap.createBitmap(bMapScaled, 0, 0, 80, 80);
-        bitmapsArray[1] = Bitmap.createBitmap(bMapScaled, 80, 0, 80, 80);
-        bitmapsArray[2] = Bitmap.createBitmap(bMapScaled, 160, 0, 80, 80);
-        bitmapsArray[3] = Bitmap.createBitmap(bMapScaled, 0, 80, 80, 80);
-        bitmapsArray[4] = Bitmap.createBitmap(bMapScaled, 80, 80, 80, 80);
-        bitmapsArray[5] = Bitmap.createBitmap(bMapScaled, 160, 80, 80, 80);
-        bitmapsArray[6] = Bitmap.createBitmap(bMapScaled, 0, 160, 80, 80);
-        bitmapsArray[7] = Bitmap.createBitmap(bMapScaled, 80, 160, 80, 80);
-        bitmapsArray[8] = Bitmap.createBitmap(bMapScaled, 160, 160, 80, 80);
+    public void createImageArrays(Bitmap image)
+    {
+        Bitmap bMapScaled = Bitmap.createScaledBitmap(image, 720, 1080, true);
+
+
+        ImageButton imgBtn = (ImageButton) findViewById(R.id.btn0);
+        ImageButton imgBtn1 = (ImageButton) findViewById(R.id.btn1);
+        ImageButton imgBtn2 = (ImageButton) findViewById(R.id.btn2);
+        ImageButton imgBtn3 = (ImageButton) findViewById(R.id.btn3);
+        ImageButton imgBtn4 = (ImageButton) findViewById(R.id.btn4);
+        ImageButton imgBtn5 = (ImageButton) findViewById(R.id.btn5);
+        ImageButton imgBtn6 = (ImageButton) findViewById(R.id.btn6);
+        ImageButton imgBtn7 = (ImageButton) findViewById(R.id.btn7);
+        ImageButton imgBtn8 = (ImageButton) findViewById(R.id.btn8);
+        ImageButton imgBtn9 = (ImageButton) findViewById(R.id.btn9);
+        ImageButton imgBtn10 = (ImageButton) findViewById(R.id.btn10);
+        ImageButton imgBtn11 = (ImageButton) findViewById(R.id.btn11);
+        ImageButton imgBtn12 = (ImageButton) findViewById(R.id.btn12);
+        ImageButton imgBtn13 = (ImageButton) findViewById(R.id.btn13);
+        ImageButton imgBtn14 = (ImageButton) findViewById(R.id.btn14);
+        ImageButton imgBtn15 = (ImageButton) findViewById(R.id.btn15);
+        ImageButton imgBtn16 = (ImageButton) findViewById(R.id.btn16);
+        ImageButton imgBtn17 = (ImageButton) findViewById(R.id.btn17);
+        ImageButton imgBtn18 = (ImageButton) findViewById(R.id.btn18);
+        ImageButton imgBtn19 = (ImageButton) findViewById(R.id.btn19);
+        ImageButton imgBtn20 = (ImageButton) findViewById(R.id.btn20);
+        ImageButton imgBtn21 = (ImageButton) findViewById(R.id.btn21);
+        ImageButton imgBtn22 = (ImageButton) findViewById(R.id.btn22);
+        ImageButton imgBtn23 = (ImageButton) findViewById(R.id.btn23);
+
+
+        //All of column 1
+        Bitmap temp = Bitmap.createBitmap(bMapScaled, 0,0, 180, 180);
+        imgBtn.setImageBitmap(temp);
+
+        temp  = Bitmap.createBitmap(bMapScaled, 0,180, 180, 180);
+        imgBtn4.setImageBitmap(temp);
+
+        temp  = Bitmap.createBitmap(bMapScaled, 0,360, 180, 180);
+        imgBtn8.setImageBitmap(temp);
+
+        temp  = Bitmap.createBitmap(bMapScaled, 0,540, 180, 180);
+        imgBtn12.setImageBitmap(temp);
+
+        temp  = Bitmap.createBitmap(bMapScaled, 0,720, 180, 180);
+        imgBtn16.setImageBitmap(temp);
+
+        temp  = Bitmap.createBitmap(bMapScaled, 0,900, 180, 180);
+        imgBtn20.setImageBitmap(temp);
+
+        //All of column 2
+        temp  = Bitmap.createBitmap(bMapScaled, 180,0, 180, 180);
+        imgBtn1.setImageBitmap(temp);
+
+        temp  = Bitmap.createBitmap(bMapScaled, 180,180, 180, 180);
+        imgBtn5.setImageBitmap(temp);
+
+        temp  = Bitmap.createBitmap(bMapScaled, 180,360, 180, 180);
+        imgBtn9.setImageBitmap(temp);
+
+        temp  = Bitmap.createBitmap(bMapScaled, 180,540, 180, 180);
+        imgBtn13.setImageBitmap(temp);
+
+        temp  = Bitmap.createBitmap(bMapScaled, 180,720, 180, 180);
+        imgBtn17.setImageBitmap(temp);
+
+        temp  = Bitmap.createBitmap(bMapScaled, 180,900, 180, 180);
+        imgBtn21.setImageBitmap(temp);
+
+        //All of column 3
+        temp  = Bitmap.createBitmap(bMapScaled, 360,0, 180, 180);
+        imgBtn2.setImageBitmap(temp);
+
+        temp  = Bitmap.createBitmap(bMapScaled, 360,180, 180, 180);
+        imgBtn6.setImageBitmap(temp);
+
+        temp  = Bitmap.createBitmap(bMapScaled, 360,360, 180, 180);
+        imgBtn10.setImageBitmap(temp);
+
+        temp  = Bitmap.createBitmap(bMapScaled, 360,540, 180, 180);
+        imgBtn14.setImageBitmap(temp);
+
+        temp  = Bitmap.createBitmap(bMapScaled, 360,720, 180, 180);
+        imgBtn18.setImageBitmap(temp);
+
+        temp  = Bitmap.createBitmap(bMapScaled, 360,900, 180, 180);
+        imgBtn22.setImageBitmap(temp);
+
+        //All of column 4
+        temp  = Bitmap.createBitmap(bMapScaled, 540,0, 180, 180);
+        imgBtn3.setImageBitmap(temp);
+
+        temp  = Bitmap.createBitmap(bMapScaled, 540,180, 180, 180);
+        imgBtn7.setImageBitmap(temp);
+
+        temp  = Bitmap.createBitmap(bMapScaled, 540,360, 180, 180);
+        imgBtn11.setImageBitmap(temp);
+
+        temp  = Bitmap.createBitmap(bMapScaled, 540,540, 180, 180);
+        imgBtn15.setImageBitmap(temp);
+
+        temp  = Bitmap.createBitmap(bMapScaled, 540,720, 180, 180);
+        imgBtn19.setImageBitmap(temp);
+
+        temp  = Bitmap.createBitmap(bMapScaled, 540,900, 180, 180);
+        imgBtn23.setImageBitmap(temp);
 
     }
-*/
+
     public View.OnClickListener click = new View.OnClickListener(){
 
         @Override
