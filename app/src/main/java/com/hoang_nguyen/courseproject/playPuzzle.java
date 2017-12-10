@@ -74,7 +74,8 @@ public class playPuzzle extends AppCompatActivity {
 
                     ImageButton imgBtn = (ImageButton) findViewById(R.id.btn0);
 
-                    Bitmap bMapScaled = Bitmap.createScaledBitmap(image, 240, 240, true);
+
+                    Bitmap bMapScaled = Bitmap.createScaledBitmap(image, 720, 1080, true);
                     Bitmap temp = Bitmap.createBitmap(bMapScaled, 0,0, 180, 180);
                     imgBtn.setImageBitmap(temp);
 
