@@ -21,7 +21,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-
+import java.util.Collections;
+import java.util.Arrays;
 public class playPuzzle extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -30,6 +31,7 @@ public class playPuzzle extends AppCompatActivity {
     Intent intent;
     ImageView imageView;
     Bitmap image;
+    Bitmap oriBit[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,7 +159,7 @@ public class playPuzzle extends AppCompatActivity {
     {
         Bitmap bMapScaled = Bitmap.createScaledBitmap(image, 720, 1080, true);
 
-        Bitmap oriBit[] = new Bitmap[24];
+        oriBit = new Bitmap[24];
         ImageButton imgBtn[] = new ImageButton[24];//creating size 4 x 6 image button array.
 
         //initialize all button with their ID.
@@ -252,6 +254,7 @@ public class playPuzzle extends AppCompatActivity {
 
         temp  = Bitmap.createBitmap(bMapScaled, 360,540, 180, 180);
         imgBtn[14].setImageBitmap(temp);
+        oriBit[14] = temp;
 
         temp  = Bitmap.createBitmap(bMapScaled, 360,720, 180, 180);
         imgBtn[18].setImageBitmap(temp);
@@ -290,12 +293,13 @@ public class playPuzzle extends AppCompatActivity {
         //Must save the original picture now to keep to that we can use whe we call check
 //       SharedPreferences saveOriginal = getSharedPreferences("Original", MODE_PRIVATE);
 //        SharedPreferences.Editor editor = saveOriginal.edit();
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//        ByteArrayOutputStream stream = new ByteArrayOutputStream();
 //        for(int i =0; i<= oriBit.length; i++){
 //            oriBit[i].compress(Bitmap.CompressFormat.JPEG, 100, stream);
  //       }
 
-        String filename = "Original";
+
+/*        String filename = "Original";
         //String string = "Hello world!";
         FileOutputStream outputStream;
         for(int i =0; i<= oriBit.length; i++) {
@@ -308,6 +312,13 @@ public class playPuzzle extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+        */
+
+        Collections.shuffle(Arrays.asList(oriBit));
+
+        for(int i =0; i< oriBit.length; i++){
+            imgBtn[i].setImageBitmap(oriBit[i]);
         }
 
     }
