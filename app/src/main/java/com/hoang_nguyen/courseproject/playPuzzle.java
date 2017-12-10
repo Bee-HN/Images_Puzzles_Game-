@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -287,6 +288,12 @@ public class playPuzzle extends AppCompatActivity {
         //Must save the original picture now to keep to that we can use whe we call check
         SharedPreferences saveOriginal = getSharedPreferences("Original", MODE_PRIVATE);
         SharedPreferences.Editor editor = saveOriginal.edit();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        for(int i =0; i< oriBit.length; i++){
+            oriBit[i].compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        }
+        byte[] bytes = stream.toByteArray();
+
 
     }
 
