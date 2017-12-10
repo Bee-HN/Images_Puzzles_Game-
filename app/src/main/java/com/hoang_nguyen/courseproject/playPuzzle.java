@@ -1,9 +1,7 @@
 package com.hoang_nguyen.courseproject;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -16,14 +14,12 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Arrays;
+import java.util.Collections;
+
 public class playPuzzle extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -66,8 +62,6 @@ public class playPuzzle extends AppCompatActivity {
             }//end of takePic
 
         }
-
-
 
     }//end of on Create
 
@@ -116,50 +110,12 @@ public class playPuzzle extends AppCompatActivity {
 
     }//end of onActivityResult.
 
-    public void createPuzzle(Bitmap image){
-
-        int index = 0;
-        ImageButton imgBtn [] = new ImageButton[29];//creating size 5 x 6 image button array.
-
-        //initialize all button with their ID.
-        imgBtn[0] = (ImageButton) findViewById(R.id.btn0);
-        imgBtn[1] = (ImageButton) findViewById(R.id.btn1);
-        imgBtn[2] = (ImageButton) findViewById(R.id.btn2);
-        imgBtn[3] = (ImageButton) findViewById(R.id.btn3);
-        imgBtn[4] = (ImageButton) findViewById(R.id.btn4);
-        imgBtn[5] = (ImageButton) findViewById(R.id.btn5);
-        imgBtn[6] = (ImageButton) findViewById(R.id.btn6);
-        imgBtn[7] = (ImageButton) findViewById(R.id.btn7);
-        imgBtn[8] = (ImageButton) findViewById(R.id.btn8);
-        imgBtn[9] = (ImageButton) findViewById(R.id.btn9);
-        imgBtn[10] = (ImageButton) findViewById(R.id.btn10);
-        imgBtn[11] = (ImageButton) findViewById(R.id.btn11);
-        imgBtn[12] = (ImageButton) findViewById(R.id.btn12);
-        imgBtn[13] = (ImageButton) findViewById(R.id.btn13);
-        imgBtn[14] = (ImageButton) findViewById(R.id.btn14);
-        imgBtn[15] = (ImageButton) findViewById(R.id.btn15);
-        imgBtn[16] = (ImageButton) findViewById(R.id.btn16);
-        imgBtn[17] = (ImageButton) findViewById(R.id.btn17);
-        imgBtn[18] = (ImageButton) findViewById(R.id.btn18);
-        imgBtn[19] = (ImageButton) findViewById(R.id.btn19);
-        imgBtn[20] = (ImageButton) findViewById(R.id.btn20);
-        imgBtn[21] = (ImageButton) findViewById(R.id.btn21);
-        imgBtn[22] = (ImageButton) findViewById(R.id.btn22);
-        imgBtn[23] = (ImageButton) findViewById(R.id.btn23);
-
-        while(imgBtn.length!= index){
-
-            imgBtn[index].setOnClickListener(click);
-
-        }
-
-    }//end of createPuzzle
-
 
     public void createImageArrays(Bitmap image)
     {
         Bitmap bMapScaled = Bitmap.createScaledBitmap(image, 720, 1080, true);
 
+        int index = 0;
         oriBit = new Bitmap[24];
         ImageButton imgBtn[] = new ImageButton[24];//creating size 4 x 6 image button array.
 
@@ -290,36 +246,11 @@ public class playPuzzle extends AppCompatActivity {
         imgBtn[23].setImageBitmap(temp);
         oriBit[23] = temp;
 
+        while(imgBtn.length!= index){
 
-        //Must save the original picture now to keep to that we can use whe we call check
-//       SharedPreferences saveOriginal = getSharedPreferences("Original", MODE_PRIVATE);
-//        SharedPreferences.Editor editor = saveOriginal.edit();
-//        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//        for(int i =0; i<= oriBit.length; i++){
-//            oriBit[i].compress(Bitmap.CompressFormat.JPEG, 100, stream);
- //       }
-
-
-/*        String filename = "Original";
-        //String string = "Hello world!";
-        FileOutputStream outputStream;
-        for(int i =0; i<= oriBit.length; i++) {
-            try {
-                oriBit[i].compress(Bitmap.CompressFormat.JPEG, 100, stream);
-                byte[] bytes = stream.toByteArray();
-                outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
-                outputStream.write(bytes);
-                outputStream.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            imgBtn[index].setOnClickListener(click);
+            index++;
         }
-        */
-
-
-
-        new ArrayList<>(Arrays.asList(oriBit));
-
 
         Collections.shuffle(Arrays.asList(oriBit));
 
@@ -328,27 +259,43 @@ public class playPuzzle extends AppCompatActivity {
         }
 
     }
-
+    int count = 0;
     public View.OnClickListener click = new View.OnClickListener(){
+
+
+        ImageButton firstImage, secondImage;
 
         @Override
         public void onClick(View view){
 
-            int x, y;
 
-            for(y= 0; y < 6 ; y++){
+            if(count == 0){
+            //grab the first image.
+                firstImage = (ImageButton) view;
+                count++;
+            }else if(count == 1){
+                secondImage = (ImageButton) view;
+                count = 0;
+                swap(firstImage, secondImage);
+            }//end of if-else
 
-                for (x = 0 ; x < 5; x ++){
 
-
-
-
-                }
-            }
-
-        }
+        }//end of onClick
 
     };
+
+    public void swap (ImageButton firstImage, ImageButton secondImage){
+        //find out each image's coordinate and then using layout to replace their images.
+
+        int left = firstImage.getLeft();
+        int right = firstImage.getRight();
+        int top = firstImage.getTop();
+        int bottom= firstImage.getBottom();
+
+        firstImage.layout(secondImage.getLeft(),secondImage.getTop(), secondImage.getRight(), secondImage.getBottom());
+        secondImage.layout(left, top, right, bottom);
+
+    }//end of swap
 
     public void SavePuzzle(View view) {
 
