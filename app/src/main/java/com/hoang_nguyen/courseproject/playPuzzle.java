@@ -2,6 +2,7 @@ package com.hoang_nguyen.courseproject;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -153,8 +154,8 @@ public class playPuzzle extends AppCompatActivity {
     {
         Bitmap bMapScaled = Bitmap.createScaledBitmap(image, 720, 1080, true);
 
-
-        ImageButton imgBtn [] = new ImageButton[24];//creating size 4 x 6 image button array.
+        Bitmap oriBit[] = new Bitmap[24];
+        ImageButton imgBtn[] = new ImageButton[24];//creating size 4 x 6 image button array.
 
         //initialize all button with their ID.
         imgBtn[0] = (ImageButton) findViewById(R.id.btn0);
@@ -186,81 +187,107 @@ public class playPuzzle extends AppCompatActivity {
         //All of column 1
         Bitmap temp = Bitmap.createBitmap(bMapScaled, 0,0, 180, 180);
         imgBtn[0].setImageBitmap(temp);
+        oriBit[0] = temp;
 
         temp  = Bitmap.createBitmap(bMapScaled, 0,180, 180, 180);
         imgBtn[4].setImageBitmap(temp);
+        oriBit[4] = temp;
 
         temp  = Bitmap.createBitmap(bMapScaled, 0,360, 180, 180);
         imgBtn[8].setImageBitmap(temp);
+        oriBit[8] = temp;
 
         temp  = Bitmap.createBitmap(bMapScaled, 0,540, 180, 180);
         imgBtn[12].setImageBitmap(temp);
+        oriBit[12] = temp;
 
         temp  = Bitmap.createBitmap(bMapScaled, 0,720, 180, 180);
         imgBtn[16].setImageBitmap(temp);
+        oriBit[16] = temp;
 
         temp  = Bitmap.createBitmap(bMapScaled, 0,900, 180, 180);
         imgBtn[20].setImageBitmap(temp);
+        oriBit[20] = temp;
 
         //All of column 2
         temp  = Bitmap.createBitmap(bMapScaled, 180,0, 180, 180);
         imgBtn[1].setImageBitmap(temp);
+        oriBit[1] = temp;
 
         temp  = Bitmap.createBitmap(bMapScaled, 180,180, 180, 180);
         imgBtn[5].setImageBitmap(temp);
+        oriBit[5] = temp;
 
         temp  = Bitmap.createBitmap(bMapScaled, 180,360, 180, 180);
         imgBtn[9].setImageBitmap(temp);
+        oriBit[9] = temp;
 
         temp  = Bitmap.createBitmap(bMapScaled, 180,540, 180, 180);
         imgBtn[13].setImageBitmap(temp);
+        oriBit[13] = temp;
 
         temp  = Bitmap.createBitmap(bMapScaled, 180,720, 180, 180);
         imgBtn[17].setImageBitmap(temp);
+        oriBit[17] = temp;
 
         temp  = Bitmap.createBitmap(bMapScaled, 180,900, 180, 180);
         imgBtn[21].setImageBitmap(temp);
+        oriBit[21] = temp;
 
         //All of column 3
         temp  = Bitmap.createBitmap(bMapScaled, 360,0, 180, 180);
         imgBtn[2].setImageBitmap(temp);
+        oriBit[2] = temp;
 
         temp  = Bitmap.createBitmap(bMapScaled, 360,180, 180, 180);
         imgBtn[6].setImageBitmap(temp);
+        oriBit[6] = temp;
 
         temp  = Bitmap.createBitmap(bMapScaled, 360,360, 180, 180);
         imgBtn[10].setImageBitmap(temp);
+        oriBit[10] = temp;
 
         temp  = Bitmap.createBitmap(bMapScaled, 360,540, 180, 180);
         imgBtn[14].setImageBitmap(temp);
 
         temp  = Bitmap.createBitmap(bMapScaled, 360,720, 180, 180);
         imgBtn[18].setImageBitmap(temp);
+        oriBit[18] = temp;
 
         temp  = Bitmap.createBitmap(bMapScaled, 360,900, 180, 180);
         imgBtn[22].setImageBitmap(temp);
+        oriBit[22] = temp;
 
         //All of column 4
         temp  = Bitmap.createBitmap(bMapScaled, 540,0, 180, 180);
         imgBtn[3].setImageBitmap(temp);
+        oriBit[3] = temp;
 
         temp  = Bitmap.createBitmap(bMapScaled, 540,180, 180, 180);
         imgBtn[7].setImageBitmap(temp);
+        oriBit[7] = temp;
 
         temp  = Bitmap.createBitmap(bMapScaled, 540,360, 180, 180);
         imgBtn[11].setImageBitmap(temp);
+        oriBit[11] = temp;
 
         temp  = Bitmap.createBitmap(bMapScaled, 540,540, 180, 180);
         imgBtn[15].setImageBitmap(temp);
+        oriBit[15] = temp;
 
         temp  = Bitmap.createBitmap(bMapScaled, 540,720, 180, 180);
         imgBtn[19].setImageBitmap(temp);
+        oriBit[19] = temp;
 
         temp  = Bitmap.createBitmap(bMapScaled, 540,900, 180, 180);
         imgBtn[23].setImageBitmap(temp);
+        oriBit[23] = temp;
 
 
         //Must save the original picture now to keep to that we can use whe we call check
+        SharedPreferences saveOriginal = getSharedPreferences("Original", MODE_PRIVATE);
+        SharedPreferences.Editor editor = saveOriginal.edit();
+
     }
 
     public View.OnClickListener click = new View.OnClickListener(){
