@@ -73,13 +73,7 @@ public class playPuzzle extends AppCompatActivity {
                 case REQUEST_IMAGE_CAPTURE:
                     image = (Bitmap) data.getExtras().get("data");
 
-//                    ImageButton imgBtn = (ImageButton) findViewById(R.id.btn0);
-//
-//
-//                    Bitmap bMapScaled = Bitmap.createScaledBitmap(image, 720, 1080, true);
-//                    Bitmap temp = Bitmap.createBitmap(bMapScaled, 0,0, 180, 180);
-//                    imgBtn.setImageBitmap(temp);
-//
+
 
                     //Eric: Please don't delete this comment.
                     //    imageView.setImageBitmap(image);
@@ -95,9 +89,41 @@ public class playPuzzle extends AppCompatActivity {
                         inputStream = getContentResolver().openInputStream(imageUri);
                         ImageButton imgBtn = (ImageButton) findViewById(R.id.btn0);
                         Bitmap image = BitmapFactory.decodeStream(inputStream);
+
+                        ImageButton imgBtn1 = (ImageButton) findViewById(R.id.btn1);
+                        ImageButton imgBtn2 = (ImageButton) findViewById(R.id.btn2);
+                        ImageButton imgBtn3 = (ImageButton) findViewById(R.id.btn3);
+                        ImageButton imgBtn4 = (ImageButton) findViewById(R.id.btn4);
+                        ImageButton imgBtn5 = (ImageButton) findViewById(R.id.btn5);
+                        ImageButton imgBtn6 = (ImageButton) findViewById(R.id.btn6);
+                        ImageButton imgBtn7 = (ImageButton) findViewById(R.id.btn7);
+                        ImageButton imgBtn8 = (ImageButton) findViewById(R.id.btn8);
+
+
                         Bitmap bMapScaled = Bitmap.createScaledBitmap(image, 720, 1080, true);
                         Bitmap temp = Bitmap.createBitmap(bMapScaled, 0,0, 180, 180);
                         imgBtn.setImageBitmap(temp);
+
+                        temp  = Bitmap.createBitmap(bMapScaled, 180,0, 180, 180);
+                        imgBtn1.setImageBitmap(temp);
+
+                        temp  = Bitmap.createBitmap(bMapScaled, 360,0, 180, 180);
+                        imgBtn2.setImageBitmap(temp);
+
+                        temp  = Bitmap.createBitmap(bMapScaled, 540,0, 180, 180);
+                        imgBtn3.setImageBitmap(temp);
+
+                        temp  = Bitmap.createBitmap(bMapScaled, 0,180, 180, 180);
+                        imgBtn4.setImageBitmap(temp);
+
+                        temp  = Bitmap.createBitmap(bMapScaled, 180,180, 180, 180);
+                        imgBtn5.setImageBitmap(temp);
+
+                        temp  = Bitmap.createBitmap(bMapScaled, 360,180, 180, 180);
+                        imgBtn6.setImageBitmap(temp);
+
+                        temp  = Bitmap.createBitmap(bMapScaled, 540,180, 180, 180);
+                        imgBtn7.setImageBitmap(temp);
                         //Eric: Please don't delete this comment.
                         //imageView.setImageBitmap(image);
 
@@ -154,7 +180,7 @@ public class playPuzzle extends AppCompatActivity {
     }//end of createPuzzle
 
 /*
-    void createImageArrays()
+    void createImageArrays(Bitmap image)
     {
         Bitmap bMap = BitmapFactory.decodeResource(getResources(), image);
         Bitmap bMapScaled = Bitmap.createScaledBitmap(bMap, 240, 240, true);
