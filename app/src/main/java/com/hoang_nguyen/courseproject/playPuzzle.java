@@ -150,6 +150,24 @@ public class playPuzzle extends AppCompatActivity {
 
     }//end of createPuzzle
 
+/*
+    void createImageArrays()
+    {
+        Bitmap bMap = BitmapFactory.decodeResource(getResources(), image);
+        Bitmap bMapScaled = Bitmap.createScaledBitmap(bMap, 240, 240, true);
+
+        bitmapsArray[0] = Bitmap.createBitmap(bMapScaled, 0, 0, 80, 80);
+        bitmapsArray[1] = Bitmap.createBitmap(bMapScaled, 80, 0, 80, 80);
+        bitmapsArray[2] = Bitmap.createBitmap(bMapScaled, 160, 0, 80, 80);
+        bitmapsArray[3] = Bitmap.createBitmap(bMapScaled, 0, 80, 80, 80);
+        bitmapsArray[4] = Bitmap.createBitmap(bMapScaled, 80, 80, 80, 80);
+        bitmapsArray[5] = Bitmap.createBitmap(bMapScaled, 160, 80, 80, 80);
+        bitmapsArray[6] = Bitmap.createBitmap(bMapScaled, 0, 160, 80, 80);
+        bitmapsArray[7] = Bitmap.createBitmap(bMapScaled, 80, 160, 80, 80);
+        bitmapsArray[8] = Bitmap.createBitmap(bMapScaled, 160, 160, 80, 80);
+
+    }
+*/
     public View.OnClickListener click = new View.OnClickListener(){
 
         @Override
