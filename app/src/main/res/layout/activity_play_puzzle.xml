@@ -121,10 +121,6 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginRight="52dp" />
 
-
-
-
-
     <ImageButton
         android:layout_width="60dp"
         android:layout_height="60dp"

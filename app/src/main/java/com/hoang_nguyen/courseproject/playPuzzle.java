@@ -1,5 +1,6 @@
 package com.hoang_nguyen.courseproject;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 
 public class playPuzzle extends AppCompatActivity {
@@ -286,14 +288,27 @@ public class playPuzzle extends AppCompatActivity {
 
 
         //Must save the original picture now to keep to that we can use whe we call check
-        SharedPreferences saveOriginal = getSharedPreferences("Original", MODE_PRIVATE);
-        SharedPreferences.Editor editor = saveOriginal.edit();
+//       SharedPreferences saveOriginal = getSharedPreferences("Original", MODE_PRIVATE);
+//        SharedPreferences.Editor editor = saveOriginal.edit();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        for(int i =0; i< oriBit.length; i++){
-            oriBit[i].compress(Bitmap.CompressFormat.JPEG, 100, stream);
-        }
-        byte[] bytes = stream.toByteArray();
+//        for(int i =0; i<= oriBit.length; i++){
+//            oriBit[i].compress(Bitmap.CompressFormat.JPEG, 100, stream);
+ //       }
 
+        String filename = "Original";
+        //String string = "Hello world!";
+        FileOutputStream outputStream;
+        for(int i =0; i<= oriBit.length; i++) {
+            try {
+                oriBit[i].compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                byte[] bytes = stream.toByteArray();
+                outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+                outputStream.write(bytes);
+                outputStream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 
