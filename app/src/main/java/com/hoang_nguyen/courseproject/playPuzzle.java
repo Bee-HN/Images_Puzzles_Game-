@@ -115,37 +115,30 @@ public class playPuzzle extends AppCompatActivity {
         ImageButton imgBtn [] = new ImageButton[29];//creating size 5 x 6 image button array.
 
         //initialize all button with their ID.
-//        imgBtn[0] = (ImageButton) findViewById(R.id.imageButton);
-//        imgBtn[1] = (ImageButton) findViewById(R.id.imageButton2);
-//        imgBtn[2] = (ImageButton) findViewById(R.id.imageButton3);
-//        imgBtn[3] = (ImageButton) findViewById(R.id.imageButton4);
-//        imgBtn[4] = (ImageButton) findViewById(R.id.imageButton5);
-//        imgBtn[5] = (ImageButton) findViewById(R.id.imageButton6);
-//        imgBtn[6] = (ImageButton) findViewById(R.id.imageButton7);
-//        imgBtn[7] = (ImageButton) findViewById(R.id.imageButton8);
-//        imgBtn[8] = (ImageButton) findViewById(R.id.imageButton9);
-//        imgBtn[9] = (ImageButton) findViewById(R.id.imageButton10);
-//        imgBtn[10] = (ImageButton) findViewById(R.id.imageButton11);
-//        imgBtn[11] = (ImageButton) findViewById(R.id.imageButton12);
-//        imgBtn[12] = (ImageButton) findViewById(R.id.imageButton13);
-//        imgBtn[13] = (ImageButton) findViewById(R.id.imageButton14);
-//        imgBtn[14] = (ImageButton) findViewById(R.id.imageButton15);
-//        imgBtn[15] = (ImageButton) findViewById(R.id.imageButton16);
-//        imgBtn[16] = (ImageButton) findViewById(R.id.imageButton17);
-//        imgBtn[17] = (ImageButton) findViewById(R.id.imageButton18);
-//        imgBtn[18] = (ImageButton) findViewById(R.id.imageButton19);
-//        imgBtn[19] = (ImageButton) findViewById(R.id.imageButton20);
-//        imgBtn[20] = (ImageButton) findViewById(R.id.imageButton21);
-//        imgBtn[21] = (ImageButton) findViewById(R.id.imageButton22);
-//        imgBtn[22] = (ImageButton) findViewById(R.id.imageButton23);
-//        imgBtn[23] = (ImageButton) findViewById(R.id.imageButton24);
-//        imgBtn[24] = (ImageButton) findViewById(R.id.imageButton25);
-//        imgBtn[25] = (ImageButton) findViewById(R.id.imageButton26);
-//        imgBtn[26] = (ImageButton) findViewById(R.id.imageButton27);
-//        imgBtn[27] = (ImageButton) findViewById(R.id.imageButton28);
-//        imgBtn[28] = (ImageButton) findViewById(R.id.imageButton29);
-//        imgBtn[29] = (ImageButton) findViewById(R.id.imageButton30);
-
+        imgBtn[0] = (ImageButton) findViewById(R.id.btn0);
+        imgBtn[1] = (ImageButton) findViewById(R.id.btn1);
+        imgBtn[2] = (ImageButton) findViewById(R.id.btn2);
+        imgBtn[3] = (ImageButton) findViewById(R.id.btn3);
+        imgBtn[4] = (ImageButton) findViewById(R.id.btn4);
+        imgBtn[5] = (ImageButton) findViewById(R.id.btn5);
+        imgBtn[6] = (ImageButton) findViewById(R.id.btn6);
+        imgBtn[7] = (ImageButton) findViewById(R.id.btn7);
+        imgBtn[8] = (ImageButton) findViewById(R.id.btn8);
+        imgBtn[9] = (ImageButton) findViewById(R.id.btn9);
+        imgBtn[10] = (ImageButton) findViewById(R.id.btn10);
+        imgBtn[11] = (ImageButton) findViewById(R.id.btn11);
+        imgBtn[12] = (ImageButton) findViewById(R.id.btn12);
+        imgBtn[13] = (ImageButton) findViewById(R.id.btn13);
+        imgBtn[14] = (ImageButton) findViewById(R.id.btn14);
+        imgBtn[15] = (ImageButton) findViewById(R.id.btn15);
+        imgBtn[16] = (ImageButton) findViewById(R.id.btn16);
+        imgBtn[17] = (ImageButton) findViewById(R.id.btn17);
+        imgBtn[18] = (ImageButton) findViewById(R.id.btn18);
+        imgBtn[19] = (ImageButton) findViewById(R.id.btn19);
+        imgBtn[20] = (ImageButton) findViewById(R.id.btn20);
+        imgBtn[21] = (ImageButton) findViewById(R.id.btn21);
+        imgBtn[22] = (ImageButton) findViewById(R.id.btn22);
+        imgBtn[23] = (ImageButton) findViewById(R.id.btn23);
 
         while(imgBtn.length!= index){
 
