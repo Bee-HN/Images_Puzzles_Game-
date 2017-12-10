@@ -3,6 +3,7 @@ package com.hoang_nguyen.courseproject;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -72,12 +73,13 @@ public class playPuzzle extends AppCompatActivity {
                 case REQUEST_IMAGE_CAPTURE:
                     image = (Bitmap) data.getExtras().get("data");
 
-                    ImageButton imgBtn = (ImageButton) findViewById(R.id.btn0);
-
-
-                    Bitmap bMapScaled = Bitmap.createScaledBitmap(image, 720, 1080, true);
-                    Bitmap temp = Bitmap.createBitmap(bMapScaled, 0,0, 180, 180);
-                    imgBtn.setImageBitmap(temp);
+//                    ImageButton imgBtn = (ImageButton) findViewById(R.id.btn0);
+//
+//
+//                    Bitmap bMapScaled = Bitmap.createScaledBitmap(image, 720, 1080, true);
+//                    Bitmap temp = Bitmap.createBitmap(bMapScaled, 0,0, 180, 180);
+//                    imgBtn.setImageBitmap(temp);
+//
 
                     //Eric: Please don't delete this comment.
                     //    imageView.setImageBitmap(image);
@@ -91,11 +93,11 @@ public class playPuzzle extends AppCompatActivity {
 
                     try {
                         inputStream = getContentResolver().openInputStream(imageUri);
-//                        ImageButton imgBtn = (ImageButton) findViewById(R.id.btn0);
-//                        Bitmap image = BitmapFactory.decodeStream(inputStream);
-//                        Bitmap bMapScaled = Bitmap.createScaledBitmap(image, 240, 240, true);
-//                        Bitmap temp = Bitmap.createBitmap(bMapScaled, 0,0, 180, 180);
-//                        imgBtn.setImageBitmap(temp);
+                        ImageButton imgBtn = (ImageButton) findViewById(R.id.btn0);
+                        Bitmap image = BitmapFactory.decodeStream(inputStream);
+                        Bitmap bMapScaled = Bitmap.createScaledBitmap(image, 720, 1080, true);
+                        Bitmap temp = Bitmap.createBitmap(bMapScaled, 0,0, 180, 180);
+                        imgBtn.setImageBitmap(temp);
                         //Eric: Please don't delete this comment.
                         //imageView.setImageBitmap(image);
 
