@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Arrays;
 public class playPuzzle extends AppCompatActivity {
@@ -314,6 +315,11 @@ public class playPuzzle extends AppCompatActivity {
             }
         }
         */
+
+
+
+        new ArrayList<>(Arrays.asList(oriBit));
+
 
         Collections.shuffle(Arrays.asList(oriBit));
 
