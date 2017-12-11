@@ -75,10 +75,6 @@ public class playPuzzle extends AppCompatActivity {
                     image = (Bitmap) data.getExtras().get("data");
                     createImageArrays(image);
 
-
-                    //Eric: Please don't delete this comment.
-                    //    imageView.setImageBitmap(image);
-                //    createPuzzle(image);//create the game.
                     break;
 
                 case REQUEST_TAKE_ALBUM:
@@ -89,14 +85,10 @@ public class playPuzzle extends AppCompatActivity {
                     try {
                         inputStream = getContentResolver().openInputStream(imageUri);
 
-                        Bitmap image = BitmapFactory.decodeStream(inputStream);
+                        image = BitmapFactory.decodeStream(inputStream);
 
                         createImageArrays(image);
 
-                        //Eric: Please don't delete this comment.
-                        //imageView.setImageBitmap(image);
-
-                   //     createPuzzle(image);//create the game.
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -252,23 +244,20 @@ public class playPuzzle extends AppCompatActivity {
             index++;
         }
 
-        Collections.shuffle(Arrays.asList(oriBit));
-
-        for(int i =0; i< oriBit.length; i++){
-            imgBtn[i].setImageBitmap(oriBit[i]);
-        }
-
+        shuffleImages(oriBit, imgBtn);
+//        Collections.shuffle(Arrays.asList(oriBit));
+//
+//        for(int i =0; i< oriBit.length; i++){
+//            imgBtn[i].setImageBitmap(oriBit[i]);
+//        }
     }
+
     int count = 0;
     public View.OnClickListener click = new View.OnClickListener(){
 
-
         ImageButton firstImage, secondImage;
-
         @Override
         public void onClick(View view){
-
-
             if(count == 0){
             //grab the first image.
                 firstImage = (ImageButton) view;
@@ -278,10 +267,7 @@ public class playPuzzle extends AppCompatActivity {
                 count = 0;
                 swap(firstImage, secondImage);
             }//end of if-else
-
-
         }//end of onClick
-
     };
 
     public void swap (ImageButton firstImage, ImageButton secondImage){
@@ -295,6 +281,7 @@ public class playPuzzle extends AppCompatActivity {
         firstImage.layout(secondImage.getLeft(),secondImage.getTop(), secondImage.getRight(), secondImage.getBottom());
         secondImage.layout(left, top, right, bottom);
 
+
     }//end of swap
 
     public void SavePuzzle(View view) {
@@ -303,11 +290,18 @@ public class playPuzzle extends AppCompatActivity {
 
     public void CheckPuzzle(View view) {
 
+
+
     }//end of checkPuzzle
 
 
-    public void ResetPuzzle(View view) {
+    public void shuffleImages(Bitmap[] imageArray, ImageButton[] btnArray) {
 
+        Collections.shuffle(Arrays.asList(imageArray));
+
+        for(int i =0; i< imageArray.length; i++){
+            btnArray[i].setImageBitmap(imageArray[i]);
+        }
 
     }
     public void BackToHome(View view) {

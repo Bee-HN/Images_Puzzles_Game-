@@ -29,23 +29,23 @@
         android:onClick="CheckPuzzle"
         android:text="Check"
         android:layout_marginStart="2dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/BackBtn"
+        app:layout_constraintBaseline_toBaselineOf="@+id/reset"
         tools:layout_constraintBaseline_creator="1"
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toRightOf="@+id/SaveBtn"
         android:layout_marginLeft="2dp" />
 
     <Button
-        android:id="@+id/BackBtn"
+        android:id="@+id/reset"
         android:layout_width="88dp"
         android:layout_height="48dp"
-        android:onClick="BackToHome"
-        android:text="Back"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_constraintLeft_creator="1"
         android:layout_marginBottom="10dp"
-        app:layout_constraintLeft_toRightOf="@+id/CheckBtn" />
+        android:onClick="shuffleImages"
+        android:text="Reset"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/CheckBtn"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1" />
 
     <Button
         android:id="@+id/QuitBtn"
@@ -56,7 +56,7 @@
         tools:layout_constraintRight_creator="1"
         android:layout_marginEnd="3dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBaseline_toBaselineOf="@+id/BackBtn"
+        app:layout_constraintBaseline_toBaselineOf="@+id/reset"
         tools:layout_constraintBaseline_creator="1"
         android:layout_marginRight="3dp" />
 
