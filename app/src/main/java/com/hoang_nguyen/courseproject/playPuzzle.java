@@ -11,8 +11,10 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -28,6 +30,10 @@ public class playPuzzle extends AppCompatActivity {
 
     Intent intent;
     Bitmap image, oriBit[];
+    int leftArr [] = new int [24];
+    int rightArr [] = new int [24];
+    int topArr [] = new int [24];
+    int bottomArr [] = new int [24];
     ImageButton imgBtn[] = new ImageButton[24];//creating size 4 x 6 image button array.
     int count = 0;
 
@@ -39,8 +45,6 @@ public class playPuzzle extends AppCompatActivity {
 
         boolean isAlbum = getIntent().getExtras().getBoolean("checkAlbum");
         boolean isCamera = getIntent().getExtras().getBoolean("checkPic");
-
-
 
         if (isAlbum) {
         //if user pick album, then load images.
@@ -63,6 +67,8 @@ public class playPuzzle extends AppCompatActivity {
             }//end of takePic
 
         }
+//        Log.i("Image Button 000 : ", " L= "+ imgBtn[0].getLeft() + "   R = "+ imgBtn[0].getRight() + " T= "+ imgBtn[0].getTop() +"   B= "+ imgBtn[0].getBottom());
+
 
     }//end of on Create
 
@@ -89,7 +95,7 @@ public class playPuzzle extends AppCompatActivity {
                         image = BitmapFactory.decodeStream(inputStream);
 
                         createImageArrays(image);
-
+                     //   Log.i("Image Button 000 : ", " L= "+ imgBtn[0].getLeft() + "   R = "+ imgBtn[0].getRight() + " T= "+ imgBtn[0].getTop() +"   B= "+ imgBtn[0].getBottom());
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -98,6 +104,8 @@ public class playPuzzle extends AppCompatActivity {
         }else{
             finish();
         }
+
+      //  Log.i("Image Button 000 : ", " L= "+ imgBtn[0].getLeft() + "   R = "+ imgBtn[0].getRight() + " T= "+ imgBtn[0].getTop() +"   B= "+ imgBtn[0].getBottom());
     }//end of onActivityResult.
 
 
@@ -105,10 +113,8 @@ public class playPuzzle extends AppCompatActivity {
     {
         Bitmap bMapScaled = Bitmap.createScaledBitmap(image, 720, 1080, true);
 
-        int index = 0;
+        int j = 0;
         oriBit = new Bitmap[24];
-
-
         //initialize all button with their ID.
         imgBtn[0] = (ImageButton) findViewById(R.id.btn0);
         imgBtn[1] = (ImageButton) findViewById(R.id.btn1);
@@ -135,10 +141,10 @@ public class playPuzzle extends AppCompatActivity {
         imgBtn[22] = (ImageButton) findViewById(R.id.btn22);
         imgBtn[23] = (ImageButton) findViewById(R.id.btn23);
 
-
         //All of column 1
         Bitmap temp = Bitmap.createBitmap(bMapScaled, 0,0, 180, 180);
         imgBtn[0].setImageBitmap(temp);
+
         oriBit[0] = temp;
 
         temp  = Bitmap.createBitmap(bMapScaled, 0,180, 180, 180);
@@ -236,19 +242,23 @@ public class playPuzzle extends AppCompatActivity {
         imgBtn[23].setImageBitmap(temp);
         oriBit[23] = temp;
 
-        while(imgBtn.length!= index){
 
-            imgBtn[index].setOnClickListener(click);
-            index++;
+        while(imgBtn.length!= j){
+
+            imgBtn[j].setOnClickListener(click);
+            j++;
         }
+        Log.i("Image Button 000 : ", " L= "+ imgBtn[0].getX() + "   R = "+ imgBtn[0].getY() + " T= "+ imgBtn[0].getTop() +"   B= "+ imgBtn[0].getBottom());
+
 
 
         Collections.shuffle(Arrays.asList(oriBit));
 
         for(int i =0; i< oriBit.length; i++){
             imgBtn[i].setImageBitmap(oriBit[i]);
+
         }
-    }
+    }//end of createImage
 
 
     public View.OnClickListener click = new View.OnClickListener(){
@@ -282,6 +292,8 @@ public class playPuzzle extends AppCompatActivity {
 
     }//end of swap
 
+
+
     public void SavePuzzle(View view) {
 
 
@@ -290,15 +302,40 @@ public class playPuzzle extends AppCompatActivity {
         SharedPreferences sh = getSharedPreferences("savePuzzle", MODE_PRIVATE);
         SharedPreferences.Editor save = sh.edit();
 
-
-
-
-
     }//end of SavePuzzle
 
     public void CheckPuzzle(View view) {
 
+        for (int index = 0; index < oriBit.length; index++){
 
+            if((leftArr[index] == imgBtn[index].getLeft()) && (rightArr[index] == imgBtn[index].getRight()) && (topArr[index] == imgBtn[index].getTop()) && (bottomArr[index] == imgBtn[index].getBottom())){
+
+                if(index == oriBit.length) {
+                   Toast.makeText(getApplicationContext(), "Correct!!", Toast.LENGTH_SHORT).show();
+                }
+            }else{
+
+            //    Toast toast = Toast.makeText( getApplicationContext(), "Please try it again.", Toast.LENGTH_SHORT);toast.show();
+                Toast.makeText( getApplicationContext(), oriBit.length + "num" + index, Toast.LENGTH_SHORT).show();
+//                Log.i("Arrays : ", " L= "+ leftArr[index] + "   R = "+ rightArr[index] + " T= "+ topArr[index] +"   B= "+ bottomArr[index]);
+//                Log.i("Image Button : ", " L= "+ imgBtn[index].getLeft() + "   R = "+ imgBtn[index].getRight() + " T= "+ imgBtn[index].getTop() +"   B= "+ imgBtn[index].getBottom());
+
+            }
+
+
+        }
+
+
+//        for(int index = 0; index <  imgBtn.length ; index++){
+//
+//            leftArr[index] = imgBtn[index].getLeft();
+//            rightArr[index] = imgBtn[index].getRight();
+//            topArr[index] = imgBtn[index].getTop();
+//            bottomArr[index] = imgBtn[index].getBottom();
+//            Log.i("Arrays : ", " L= "+ leftArr[index] + "   R = "+ rightArr[index] + " T= "+ topArr[index] +"   B= "+ bottomArr[index]);
+//            Log.i("Image Button : ", " L= "+ imgBtn[index].getLeft() + "   R = "+ imgBtn[index].getRight() + " T= "+ imgBtn[index].getTop() +"   B= "+ imgBtn[index].getBottom());
+//            Log.i("oribit.lenght","" + oriBit.length);
+//        }
 
     }//end of checkPuzzle
 

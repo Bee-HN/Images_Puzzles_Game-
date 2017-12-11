@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.setTitle("Puzzle Time");
+
+
     }//end of create.
 
     public void resumeGame (View view){
