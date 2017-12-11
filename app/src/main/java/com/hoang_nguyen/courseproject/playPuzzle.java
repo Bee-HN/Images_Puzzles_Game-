@@ -2,6 +2,7 @@ package com.hoang_nguyen.courseproject;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -12,8 +13,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -26,9 +27,9 @@ public class playPuzzle extends AppCompatActivity {
     static final int REQUEST_TAKE_ALBUM = 2;
 
     Intent intent;
-    ImageView imageView;
-    Bitmap image;
-    Bitmap oriBit[];
+    Bitmap image, oriBit[];
+    ImageButton imgBtn[] = new ImageButton[24];//creating size 4 x 6 image button array.
+    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,13 +94,10 @@ public class playPuzzle extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     break;
-
             }
-
         }else{
             finish();
         }
-
     }//end of onActivityResult.
 
 
@@ -109,7 +107,7 @@ public class playPuzzle extends AppCompatActivity {
 
         int index = 0;
         oriBit = new Bitmap[24];
-        ImageButton imgBtn[] = new ImageButton[24];//creating size 4 x 6 image button array.
+
 
         //initialize all button with their ID.
         imgBtn[0] = (ImageButton) findViewById(R.id.btn0);
@@ -244,15 +242,15 @@ public class playPuzzle extends AppCompatActivity {
             index++;
         }
 
-        shuffleImages(oriBit, imgBtn);
-//        Collections.shuffle(Arrays.asList(oriBit));
-//
-//        for(int i =0; i< oriBit.length; i++){
-//            imgBtn[i].setImageBitmap(oriBit[i]);
-//        }
+
+        Collections.shuffle(Arrays.asList(oriBit));
+
+        for(int i =0; i< oriBit.length; i++){
+            imgBtn[i].setImageBitmap(oriBit[i]);
+        }
     }
 
-    int count = 0;
+
     public View.OnClickListener click = new View.OnClickListener(){
 
         ImageButton firstImage, secondImage;
@@ -286,6 +284,16 @@ public class playPuzzle extends AppCompatActivity {
 
     public void SavePuzzle(View view) {
 
+
+        ByteArrayOutputStream array = new ByteArrayOutputStream();
+
+        SharedPreferences sh = getSharedPreferences("savePuzzle", MODE_PRIVATE);
+        SharedPreferences.Editor save = sh.edit();
+
+
+
+
+
     }//end of SavePuzzle
 
     public void CheckPuzzle(View view) {
@@ -295,15 +303,13 @@ public class playPuzzle extends AppCompatActivity {
     }//end of checkPuzzle
 
 
-    public void shuffleImages(Bitmap[] imageArray, ImageButton[] btnArray) {
+    public void resetImage (View view) {
+    //Reset the game by calling createImageArrays.
 
-        Collections.shuffle(Arrays.asList(imageArray));
+        createImageArrays(image);
 
-        for(int i =0; i< imageArray.length; i++){
-            btnArray[i].setImageBitmap(imageArray[i]);
-        }
+    }//end of resetImage.
 
-    }
     public void BackToHome(View view) {
 
         AlertDialog.Builder altdial = new AlertDialog.Builder(playPuzzle.this);
