@@ -1,18 +1,17 @@
 package com.hoang_nguyen.courseproject;
 
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+
+/*
+    Authors: Seho Lee and G# 00984821
+             Emmanuel Menases and G#
+*/
 
 public class help extends AppCompatActivity {
-
-    public static Button Authors;
-    public static Button HowTo;
-    public static Button Tips;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,26 +21,25 @@ public class help extends AppCompatActivity {
     }
 
     public void TipsAndTricks(View view) {
+    //When user select Tip button, using alertDialog to show the tip.
+        AlertDialog.Builder altdial = new AlertDialog.Builder(help.this);
+        altdial.setMessage("Some Tips and Tricks\n\n" +
+                "1. Try Solving the border").setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
 
+        AlertDialog alert = altdial.create();
+        alert.setTitle("Tips and Tricks");
+        alert.show();
 
-                AlertDialog.Builder altdial = new AlertDialog.Builder(help.this);
-                altdial.setMessage("Some Tips and Tricks\n\n" +
-                        "1. Try Solving the border").setCancelable(false)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-
-                AlertDialog alert = altdial.create();
-                alert.setTitle("Tips and Tricks");
-                alert.show();
-
-    }
+    }//end of TipsAndTricks
 
     public void HowTo(View view) {
-
+    //when user select How to play button, using alertDialog, to show the how to play.
                 AlertDialog.Builder altdial = new AlertDialog.Builder(help.this);
                 altdial.setMessage("How to play this game? Simple!\n\n" +
                         "1. Either open/take a picture or if you have played and saved game click Resume\n" +
@@ -59,10 +57,10 @@ public class help extends AppCompatActivity {
                 alert.setTitle("How to Play");
                 alert.show();
 
-    }
+    }//end of How to play.
 
     public void Authors(View view) {
-
+    //when user select authors button, using alertDiaglog to show creaters.
                 AlertDialog.Builder altdial = new AlertDialog.Builder(help.this);
                 altdial.setMessage("This Puzzle App is created by the following GMU students:\nSeho Lee\nEmmanuel Meneses\nHoang Nguyen").setCancelable(false)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -75,7 +73,5 @@ public class help extends AppCompatActivity {
                 AlertDialog alert = altdial.create();
                 alert.setTitle("Authors of Puzzle App");
                 alert.show();
-
-
-    }
+    }//end of Authors.
 }
