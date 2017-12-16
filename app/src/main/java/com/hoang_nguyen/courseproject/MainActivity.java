@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     }//end of create.
 
+
     public void takePic (View view) {
     //If user select "Take Picture" then,
     //playPuzzle class will activate Camera function.

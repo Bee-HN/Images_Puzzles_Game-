@@ -36,13 +36,14 @@ public class help extends AppCompatActivity {
         alert.setTitle("Tips and Tricks");
         alert.show();
 
+
     }//end of TipsAndTricks
 
     public void HowTo(View view) {
     //when user select How to play button, using alertDialog, to show the how to play.
                 AlertDialog.Builder altdial = new AlertDialog.Builder(help.this);
                 altdial.setMessage("How to play this game? Simple!\n\n" +
-                        "1. Either open/take a picture or if you have played and saved game click Resume\n" +
+                        "1. Either open/take a picture\n" +
                         "2. After choosing your picture, the picture will look in a scrambled state\n" +
                         "3. To solve, click a tile, and click where you want to place it\n" +
                         "4. Buttons on the bottom of puzzle screen is for convenience").setCancelable(false)
