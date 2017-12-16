@@ -273,8 +273,16 @@ public class playPuzzle extends AppCompatActivity {
     public void CheckPuzzle(View view) {
     //using alertDialog to show original picutre so that user can compare thier answer.
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(playPuzzle.this);
-        alertDialog.setMessage("This is the original picture");
-        alertDialog.setNegativeButton("Back", null);
+
+            alertDialog.setMessage("This is the original picture").setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                }
+            });
+
+
 
         ImageView imageView = new ImageView(playPuzzle.this);
         imageView.setImageBitmap(image);
