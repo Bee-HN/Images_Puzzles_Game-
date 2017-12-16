@@ -20,7 +20,8 @@ import java.util.Collections;
 
 /*
     Authors: Seho Lee and G# 00984821
-             Emmanuel Menases and G#
+             Emmanuel Meneses and G#00984596
+             Hoang Nguyen and G#00924950
  */
 
 

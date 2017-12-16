@@ -8,9 +8,12 @@ import android.view.View;
 
 /*
     Authors: Seho Lee and G# 00984821
-             Emmanuel Menases and G#
+             Emmanuel Meneses and G#00984596
+             Hoang Nguyen and G#00924950
 */
 
+//This activity is a helpful tutorial on how to use the app
+// Please read if youre confused
 public class help extends AppCompatActivity {
 
     @Override
@@ -24,7 +27,9 @@ public class help extends AppCompatActivity {
     //When user select Tip button, using alertDialog to show the tip.
         AlertDialog.Builder altdial = new AlertDialog.Builder(help.this);
         altdial.setMessage("Some Tips and Tricks\n\n" +
-                "1. Try Solving the border").setCancelable(false)
+                "1. Try Solving the border" +
+                "2. Use Check Button to see Original Picture" +
+                "3. Git gud").setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -42,7 +47,7 @@ public class help extends AppCompatActivity {
     //when user select How to play button, using alertDialog, to show the how to play.
                 AlertDialog.Builder altdial = new AlertDialog.Builder(help.this);
                 altdial.setMessage("How to play this game? Simple!\n\n" +
-                        "1. Either open/take a picture or if you have played and saved game click Resume\n" +
+                        "1. Either open/take a picture\n" +
                         "2. After choosing your picture, the picture will look in a scrambled state\n" +
                         "3. To solve, click a tile, and click where you want to place it\n" +
                         "4. Buttons on the bottom of puzzle screen is for convenience").setCancelable(false)
