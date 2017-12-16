@@ -254,6 +254,7 @@ public class playPuzzle extends AppCompatActivity {
                 swap(firstImage, secondImage);// call swap fucntion to switch the puzzle images.
             }//end of if-else
         }//end of onClick
+
     };
 
     public void swap (ImageButton firstImage, ImageButton secondImage){

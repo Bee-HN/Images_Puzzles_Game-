@@ -41,6 +41,7 @@ public class help extends AppCompatActivity {
         alert.setTitle("Tips and Tricks");
         alert.show();
 
+
     }//end of TipsAndTricks
 
     public void HowTo(View view) {
