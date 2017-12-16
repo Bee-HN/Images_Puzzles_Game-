@@ -1,8 +1,6 @@
 package com.hoang_nguyen.courseproject;
-
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -11,12 +9,8 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.Toast;
-
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -30,10 +24,6 @@ public class playPuzzle extends AppCompatActivity {
 
     Intent intent;
     Bitmap image, oriBit[];
-    int leftArr [] = new int [24];
-    int rightArr [] = new int [24];
-    int topArr [] = new int [24];
-    int bottomArr [] = new int [24];
     ImageButton imgBtn[] = new ImageButton[24];//creating size 4 x 6 image button array.
     int count = 0;
 
@@ -65,11 +55,7 @@ public class playPuzzle extends AppCompatActivity {
             if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             }//end of takePic
-
         }
-//        Log.i("Image Button 000 : ", " L= "+ imgBtn[0].getLeft() + "   R = "+ imgBtn[0].getRight() + " T= "+ imgBtn[0].getTop() +"   B= "+ imgBtn[0].getBottom());
-
-
     }//end of on Create
 
     @Override
@@ -95,7 +81,7 @@ public class playPuzzle extends AppCompatActivity {
                         image = BitmapFactory.decodeStream(inputStream);
 
                         createImageArrays(image);
-                     //   Log.i("Image Button 000 : ", " L= "+ imgBtn[0].getLeft() + "   R = "+ imgBtn[0].getRight() + " T= "+ imgBtn[0].getTop() +"   B= "+ imgBtn[0].getBottom());
+
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -105,8 +91,7 @@ public class playPuzzle extends AppCompatActivity {
             finish();
         }
 
-      //  Log.i("Image Button 000 : ", " L= "+ imgBtn[0].getLeft() + "   R = "+ imgBtn[0].getRight() + " T= "+ imgBtn[0].getTop() +"   B= "+ imgBtn[0].getBottom());
-    }//end of onActivityResult.
+}//end of onActivityResult.
 
 
     public void createImageArrays(Bitmap image)
@@ -248,9 +233,6 @@ public class playPuzzle extends AppCompatActivity {
             imgBtn[j].setOnClickListener(click);
             j++;
         }
-        Log.i("Image Button 000 : ", " L= "+ imgBtn[0].getX() + "   R = "+ imgBtn[0].getY() + " T= "+ imgBtn[0].getTop() +"   B= "+ imgBtn[0].getBottom());
-
-
 
         Collections.shuffle(Arrays.asList(oriBit));
 
@@ -292,50 +274,9 @@ public class playPuzzle extends AppCompatActivity {
 
     }//end of swap
 
-
-
-    public void SavePuzzle(View view) {
-
-
-        ByteArrayOutputStream array = new ByteArrayOutputStream();
-
-        SharedPreferences sh = getSharedPreferences("savePuzzle", MODE_PRIVATE);
-        SharedPreferences.Editor save = sh.edit();
-
-    }//end of SavePuzzle
-
     public void CheckPuzzle(View view) {
 
-        for (int index = 0; index < oriBit.length; index++){
 
-            if((leftArr[index] == imgBtn[index].getLeft()) && (rightArr[index] == imgBtn[index].getRight()) && (topArr[index] == imgBtn[index].getTop()) && (bottomArr[index] == imgBtn[index].getBottom())){
-
-                if(index == oriBit.length) {
-                   Toast.makeText(getApplicationContext(), "Correct!!", Toast.LENGTH_SHORT).show();
-                }
-            }else{
-
-            //    Toast toast = Toast.makeText( getApplicationContext(), "Please try it again.", Toast.LENGTH_SHORT);toast.show();
-                Toast.makeText( getApplicationContext(), oriBit.length + "num" + index, Toast.LENGTH_SHORT).show();
-//                Log.i("Arrays : ", " L= "+ leftArr[index] + "   R = "+ rightArr[index] + " T= "+ topArr[index] +"   B= "+ bottomArr[index]);
-//                Log.i("Image Button : ", " L= "+ imgBtn[index].getLeft() + "   R = "+ imgBtn[index].getRight() + " T= "+ imgBtn[index].getTop() +"   B= "+ imgBtn[index].getBottom());
-
-            }
-
-
-        }
-
-
-//        for(int index = 0; index <  imgBtn.length ; index++){
-//
-//            leftArr[index] = imgBtn[index].getLeft();
-//            rightArr[index] = imgBtn[index].getRight();
-//            topArr[index] = imgBtn[index].getTop();
-//            bottomArr[index] = imgBtn[index].getBottom();
-//            Log.i("Arrays : ", " L= "+ leftArr[index] + "   R = "+ rightArr[index] + " T= "+ topArr[index] +"   B= "+ bottomArr[index]);
-//            Log.i("Image Button : ", " L= "+ imgBtn[index].getLeft() + "   R = "+ imgBtn[index].getRight() + " T= "+ imgBtn[index].getTop() +"   B= "+ imgBtn[index].getBottom());
-//            Log.i("oribit.lenght","" + oriBit.length);
-//        }
 
     }//end of checkPuzzle
 

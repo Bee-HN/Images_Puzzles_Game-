@@ -7,15 +7,17 @@
     android:orientation="vertical"
     android:background="@drawable/background"
     android:gravity="center"
-    tools:context="com.hoang_nguyen.courseproject.MainActivity">
+    tools:context="com.hoang_nguyen.courseproject.MainActivity"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
 
     <Button
-        android:id="@+id/resumeButton"
-        android:layout_width="140dp"
+        android:id="@+id/pictureLibraryButton"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:onClick="resumeGame"
-                android:gravity="center"
-        android:background="@drawable/resume2"
+        android:gravity="center"
+        android:onClick="lordPicture"
+        android:background="@drawable/openpic1"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintBottom_creator="1"
         app:layout_constraintBottom_toTopOf="@+id/helpButton"
@@ -24,22 +26,8 @@
         app:layout_constraintLeft_toLeftOf="@+id/helpButton" />
 
     <Button
-        android:id="@+id/pictureLibraryButton"
-        android:layout_width="140dp"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:onClick="lordPicture"
-        android:background="@drawable/openpic1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toTopOf="@+id/resumeButton"
-        app:layout_constraintRight_toRightOf="@+id/resumeButton"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="@+id/resumeButton" />
-
-    <Button
         android:id="@+id/takePictureButton"
-        android:layout_width="140dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
         android:gravity="center_horizontal"
         android:onClick="takePic"
@@ -54,7 +42,7 @@
 
     <Button
         android:id="@+id/helpButton"
-        android:layout_width="140dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
         android:gravity="center"
         android:onClick="help"
@@ -71,7 +59,7 @@
     <Button
         android:id="@+id/quitButton"
         android:layout_width="140dp"
-        android:layout_height="60dp"
+        android:layout_height="0dp"
         android:gravity="center"
         android:onClick="exit"
         android:background="@drawable/quit"
