@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -276,7 +277,15 @@ public class playPuzzle extends AppCompatActivity {
 
     public void CheckPuzzle(View view) {
 
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(playPuzzle.this);
+        alertDialog.setMessage("This is the original picture");
+        alertDialog.setNegativeButton("Back", null);
 
+        ImageView imageView = new ImageView(playPuzzle.this);
+        imageView.setImageBitmap(image);
+        alertDialog.setView(imageView);
+        alertDialog.create();
+        alertDialog.show();
 
     }//end of checkPuzzle
 
