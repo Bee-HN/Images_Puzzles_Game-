@@ -27,9 +27,9 @@ public class help extends AppCompatActivity {
     //When user select Tip button, using alertDialog to show the tip.
         AlertDialog.Builder altdial = new AlertDialog.Builder(help.this);
         altdial.setMessage("Some Tips and Tricks\n\n" +
-                "1. Try Solving the border" +
-                "2. Use Check Button to see Original Picture" +
-                "3. Git gud").setCancelable(false)
+                "1. Try Solving the border\n" +
+                "2. Use Check Button to see Original Picture\n" +
+                "3. Git gud\n").setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
